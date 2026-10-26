@@ -27,6 +27,7 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   const [helpfulClicked, setHelpfulClicked] = useState(false);
   const [evadeStep, setEvadeStep] = useState(0);
   const [safeLinkClicked, setSafeLinkClicked] = useState(false);
+  const [massBlockFeedback, setMassBlockFeedback] = useState<'sim' | 'nao' | null>(null);
 
   // Reset interactive states when switching monster pages
   useEffect(() => {
@@ -36,6 +37,7 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
     setHelpfulClicked(false);
     setEvadeStep(0);
     setSafeLinkClicked(false);
+    setMassBlockFeedback(null);
   }, [data.id]);
 
   // Find Previous / Next pages for clean doc navigation at the bottom
@@ -409,6 +411,94 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
                   </p>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Detalhe especial exclusivo da página "O Bloqueio em Massa" */}
+          {data.id === 'o-bloqueio-em-massa' && (
+            <div className="pt-4 border-t border-zinc-800/80 space-y-6">
+              <div className="space-y-3">
+                <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">
+                  🏆 CONQUISTAS DESBLOQUEADAS
+                </h4>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3.5 rounded-lg bg-[#0c0c10] border border-zinc-800/70 space-y-1">
+                    <div className="text-xs font-mono font-semibold text-zinc-200">
+                      🥉 PRIMEIROS PASSOS
+                    </div>
+                    <p className="text-xs text-zinc-400">
+                      Receba seus primeiros 10 bloqueios.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-[#0c0c10] border border-zinc-800/70 space-y-1">
+                    <div className="text-xs font-mono font-semibold text-zinc-200">
+                      🥈 TÁ DANDO CERTO
+                    </div>
+                    <p className="text-xs text-zinc-400">
+                      Seja bloqueado por 100 pessoas.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-[#0c0c10] border border-zinc-800/70 space-y-1">
+                    <div className="text-xs font-mono font-semibold text-zinc-200">
+                      🥇 PROFISSIONAL
+                    </div>
+                    <p className="text-xs text-zinc-400">
+                      Ultrapasse 1.000 bloqueios.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-[#0c0c10] border border-zinc-800/70 space-y-1">
+                    <div className="text-xs font-mono font-semibold text-zinc-200">
+                      💀 LENDA DO SUPORTE
+                    </div>
+                    <p className="text-xs text-zinc-400">
+                      Faça o suporte perguntar:{' '}
+                      <strong className="text-zinc-300 font-medium">
+                        “Mas o que você fez?”
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pequena interação discreta */}
+              <div className="text-xs text-zinc-400 space-y-2">
+                <div className="flex items-center gap-2.5">
+                  <span>Este conteúdo foi útil?</span>
+                  <div className="inline-flex items-center gap-2 font-mono">
+                    <button
+                      type="button"
+                      onClick={() => setMassBlockFeedback('sim')}
+                      className="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 transition-colors"
+                    >
+                      Sim
+                    </button>
+                    <span className="text-zinc-600">|</span>
+                    <button
+                      type="button"
+                      onClick={() => setMassBlockFeedback('nao')}
+                      className="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 transition-colors"
+                    >
+                      Não
+                    </button>
+                  </div>
+                </div>
+
+                {massBlockFeedback === 'nao' && (
+                  <p className="text-xs font-mono text-red-400">
+                    Você bloqueou este conteúdo.
+                  </p>
+                )}
+
+                {massBlockFeedback === 'sim' && (
+                  <p className="text-xs font-mono text-zinc-300">
+                    Obrigado! Sua opinião será ignorada com sucesso.
+                  </p>
+                )}
+              </div>
             </div>
           )}
 

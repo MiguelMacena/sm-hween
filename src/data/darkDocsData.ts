@@ -553,7 +553,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Mensagens entregues no aparelho do usuário',
       yellow: 'Índice de qualidade despencando rapidamente',
       red: 'Número suspenso por excesso de bloqueios e rejeições'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Nem todo mundo vai gostar de você. No nosso caso, ninguém.',
+      ratingSummary: {
+        score: '5,0 / 5',
+        totalCount: '0 avaliações verificadas',
+        subtext: 'Os outros usuários nos bloquearam antes de avaliar.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Se você não gostou desta seção, fique à vontade para bloqueá-la também.'
+    },
+    testimonials: [
+      {
+        name: 'Shrek',
+        location: 'Pântano',
+        quote:
+          '“Passei anos tentando afastar todo mundo do meu pântano. Descobri que era muito mais fácil mandar algumas mensagens.”',
+        badge: 'Distância social máxima'
+      },
+      {
+        name: 'Loki',
+        location: 'Asgard',
+        quote:
+          '“Conquistei inimigos em nove reinos. Ainda assim, nunca fui bloqueado por tanta gente ao mesmo tempo.”',
+        badge: 'Recordista interdimensional'
+      },
+      {
+        name: 'Cebolinha',
+        location: 'Bairro do Limoeiro',
+        quote:
+          '“Meu plano infalível funcionou. Todo mundo me bloqueou. Agora só pleciso descobrir qual ela a segunda palte do plano.”',
+        badge: 'Plano infalível'
+      },
+      {
+        name: 'Dr. House',
+        location: 'Princeton-Plainsboro',
+        quote:
+          '“As pessoas já não gostavam de falar comigo pessoalmente. Finalmente consegui automatizar o processo.”',
+        badge: 'Diagnóstico confirmado'
+      },
+      {
+        name: 'Pica-Pau',
+        location: 'Localização desconhecida',
+        quote:
+          '“Fui bloqueado uma vez. Mandei de novo. Fui bloqueado novamente. Mandei de outro número. HA-HA-HA-HA-HA.”',
+        badge: 'Persistência preocupante'
+      },
+      {
+        name: 'Lord Voldemort',
+        location: 'Hogwarts',
+        quote:
+          '“Durante anos fui aquele cujo nome não deve ser pronunciado. Depois deste treinamento virei aquele cujo número não deve ser atendido.”',
+        badge: 'Contato indesejado'
+      },
+      {
+        name: 'Vegeta',
+        location: 'Planeta Vegeta',
+        quote:
+          '“O medidor apontou mais de oito mil bloqueios. Finalmente encontrei um número digno do meu orgulho.”',
+        badge: 'Nível de rejeição elevado'
+      },
+      {
+        name: 'Wolverine',
+        location: 'Escola Xavier',
+        quote:
+          '“Meu fator de cura é impressionante. A reputação do número, aparentemente, não possui o mesmo recurso.”',
+        badge: 'Sem regeneração disponível'
+      }
+    ]
   },
 
   'o-numero-fantasma': {
