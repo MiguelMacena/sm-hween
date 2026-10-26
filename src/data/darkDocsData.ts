@@ -225,6 +225,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Para que conversar com um cliente por vez se você pode importunar cinquenta mil no mesmo segundo?”',
     description:
       'Responsável por submeter listas gigantescas de contatos sem consentimento prévio a fluxos simultâneos de envio. O Disparo em Massa opera sob a premissa de que limites de frequência e boas práticas são apenas sugestões opcionais.',
+    hero: {
+      gifSrc: 'halloween/disparo_page.gif',
+      title: 'O MONSTRO DO DISPARO EM MASSA',
+      subtitle: 'Uma mensagem? Que tal 10.000?',
+      badge: 'Halloween Edition • Monstros / 02',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como enviar milhares de mensagens e fingir que foi uma coincidência',
     videoDuration: '02:15',
     videoFilePlaceholder: '/videos/o-disparo-em-massa.mp4',
