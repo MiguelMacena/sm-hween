@@ -36,12 +36,21 @@ export interface TestimonialsMeta {
   };
 }
 
+export interface MonsterHeroData {
+  gifSrc: string;
+  title: string;
+  subtitle: string;
+  badge?: string;
+  contentPosition?: 'bottom-left' | 'bottom-center' | 'bottom-right' | 'center-left' | 'center';
+}
+
 export interface MonsterPageData {
   id: PageId;
   sectionLabel: string;
   title: string;
   quote: string;
   description: string;
+  hero?: MonsterHeroData;
   videoTitle: string;
   videoSubtitle?: string;
   videoDuration: string;
@@ -111,6 +120,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Se o cliente não respondeu nas primeiras treze tentativas, claramente ele só não viu a décima quarta.”',
     description:
       'O Spam atua na repetição contínua de mensagens idênticas em curtos intervalos de tempo. Sua principal característica técnica é ignorar completamente a ausência de resposta do destinatário e continuar enviando lembretes urgentes até que o botão de denúncia seja acionado.',
+    hero: {
+      gifSrc: 'halloween/spam_page.gif',
+      title: 'O MONSTRO DO SPAM',
+      subtitle: 'Ele não manda mensagem. Ele manda TODAS.',
+      badge: 'Halloween Edition • Monstros / 01',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como mandar a mesma mensagem até alguém denunciar você',
     videoDuration: '01:48',
     videoFilePlaceholder: '/videos/o-spam.mp4',

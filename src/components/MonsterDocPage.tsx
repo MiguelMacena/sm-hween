@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MonsterPageData, PageId, PAGE_ORDER, SIDEBAR_SECTIONS } from '../data/darkDocsData';
 import { Play, AlertCircle, RotateCcw } from 'lucide-react';
 import { DiscreteSpider } from './CobwebDecor';
+import { MonsterHero } from './MonsterHero';
 
 interface MonsterDocPageProps {
   data: MonsterPageData;
@@ -109,7 +110,11 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   const currentOffset = EVADE_OFFSETS[evadeStep % EVADE_OFFSETS.length];
 
   return (
-    <article className="relative py-8 sm:py-16 space-y-10 max-w-2xl">
+    <article
+      className={`relative py-8 sm:py-16 space-y-10 ${
+        data.hero ? 'w-full' : 'max-w-2xl'
+      }`}
+    >
       {/* Optional discrete spider hanging in top right of specific monster pages */}
       {data.showDiscreteSpider && (
         <div className="absolute top-0 right-2 sm:right-6">
@@ -121,6 +126,17 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
       <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
         <span>{data.sectionLabel}</span>
       </div>
+
+      {/* Optional Hero Banner (Reusable across monster pages; currently active on Spam) */}
+      {data.hero && (
+        <MonsterHero
+          gifSrc={data.hero.gifSrc}
+          title={data.hero.title}
+          subtitle={data.hero.subtitle}
+          badge={data.hero.badge}
+          contentPosition={data.hero.contentPosition}
+        />
+      )}
 
       {/* Header: Title, Suspicious Quote, Short Description */}
       <header className="space-y-6">
