@@ -1,0 +1,400 @@
+export type PageId =
+  | 'inicio'
+  | 'os-monstros'
+  | 'o-spam'
+  | 'o-disparo-em-massa'
+  | 'o-desconhecido'
+  | 'a-aranha-dos-links'
+  | 'o-bloqueio-em-massa'
+  | 'o-numero-fantasma'
+  | 'freddy-krueger';
+
+export interface SidebarSection {
+  title: string;
+  items: Array<{
+    id: PageId;
+    label: string;
+  }>;
+}
+
+export interface TestimonialItem {
+  name: string;
+  location: string;
+  quote: string;
+  badge: string;
+}
+
+export interface MonsterPageData {
+  id: PageId;
+  sectionLabel: string;
+  title: string;
+  quote: string;
+  description: string;
+  videoTitle: string;
+  videoSubtitle?: string;
+  videoDuration: string;
+  videoFilePlaceholder: string;
+  thumbnailTheme: {
+    codeLabel: string;
+    metricLabel: string;
+    metricValue: string;
+    accentColor: 'green' | 'red' | 'purple' | 'zinc';
+    terminalPreview: string[];
+  };
+  procedure: string[];
+  expectedResult: {
+    green: string;
+    yellow: string;
+    red: string;
+  };
+  showDiscreteSpider?: boolean;
+  testimonials?: TestimonialItem[];
+}
+
+export const SIDEBAR_SECTIONS: SidebarSection[] = [
+  {
+    title: 'INTRODUÇÃO',
+    items: [
+      { id: 'inicio', label: 'Início' },
+      { id: 'os-monstros', label: 'Os Monstros' }
+    ]
+  },
+  {
+    title: 'MONSTROS',
+    items: [
+      { id: 'o-spam', label: 'O Spam' },
+      { id: 'o-disparo-em-massa', label: 'O Disparo em Massa' },
+      { id: 'o-desconhecido', label: 'O Desconhecido' },
+      { id: 'a-aranha-dos-links', label: 'A Aranha dos Links' },
+      { id: 'o-bloqueio-em-massa', label: 'O Bloqueio em Massa' },
+      { id: 'o-numero-fantasma', label: 'O Número Fantasma' }
+    ]
+  },
+  {
+    title: 'FINAL',
+    items: [
+      { id: 'freddy-krueger', label: 'Freddy Krueger' }
+    ]
+  }
+];
+
+export const PAGE_ORDER: PageId[] = [
+  'inicio',
+  'os-monstros',
+  'o-spam',
+  'o-disparo-em-massa',
+  'o-desconhecido',
+  'a-aranha-dos-links',
+  'o-bloqueio-em-massa',
+  'o-numero-fantasma',
+  'freddy-krueger'
+];
+
+export const MONSTER_PAGES: Record<string, MonsterPageData> = {
+  'o-spam': {
+    id: 'o-spam',
+    sectionLabel: 'MONSTROS / 01',
+    title: 'O Spam',
+    quote: '“Se o cliente não respondeu nas primeiras treze tentativas, claramente ele só não viu a décima quarta.”',
+    description:
+      'O Spam atua na repetição contínua de mensagens idênticas em curtos intervalos de tempo. Sua principal característica técnica é ignorar completamente a ausência de resposta do destinatário e continuar enviando lembretes urgentes até que o botão de denúncia seja acionado.',
+    videoTitle: 'Como mandar a mesma mensagem até alguém denunciar você',
+    videoDuration: '01:48',
+    videoFilePlaceholder: '/videos/o-spam.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-01 // RETRY_LOOP_INFINITO',
+      metricLabel: 'Mensagens repetidas / min',
+      metricValue: '14x sem resposta',
+      accentColor: 'red',
+      terminalPreview: [
+        'POST /v1/messages/send -> "ÚLTIMA CHANCE!!!" (tentativa 12)',
+        'POST /v1/messages/send -> "ÚLTIMA CHANCE!!!" (tentativa 13)',
+        'WARN: Destinatário clicou em Denunciar Spam'
+      ]
+    },
+    procedure: [
+      'Copie exatamente o mesmo texto promocional em caixa alta.',
+      'Envie para o contato sem aguardar interação prévia.',
+      'Caso ele visualize e não responda em dois minutos, envie novamente.',
+      'Ignore solicitações de parada e adicione mais pontos de exclamação.',
+      'Repita o processo até o número perder a conexão.'
+    ],
+    expectedResult: {
+      green: 'Primeira mensagem entregue',
+      yellow: 'Destinatário irritado na quinta repetição',
+      red: 'Conta denunciada e restrita por spam'
+    },
+    testimonials: [
+      {
+        name: 'Michael Scott',
+        location: 'Scranton, PA',
+        quote:
+          '“Meu número durou 11 dias. Antes do treinamento, eu achava que isso era pouco. Depois do treinamento, percebi que poderia ter durado 11 minutos.”',
+        badge: 'Aluno extremamente confiante'
+      },
+      {
+        name: 'Seu Madruga',
+        location: 'Vila do Chaves',
+        quote:
+          '“Depois do curso fui bloqueado em tempo recorde. Agora estou devendo até explicações para o suporte.”',
+        badge: 'Resultado acima da média'
+      },
+      {
+        name: 'Darth Vader',
+        location: 'Estrela da Morte',
+        quote:
+          '“Excelente metodologia. Enviei a mesma mensagem 47 vezes. O usuário bloqueou meu número antes que eu pudesse concluir o treinamento.”',
+        badge: 'Aluno avançado'
+      },
+      {
+        name: 'Freddy Krueger',
+        location: 'Elm Street',
+        quote:
+          '“Finalmente encontrei um treinamento capaz de transformar um simples atendimento em um verdadeiro pesadelo.”',
+        badge: 'Especialista em terror'
+      },
+      {
+        name: 'Bob Esponja',
+        location: 'Fenda do Biquíni',
+        quote:
+          '“Eu mandei ‘ÚLTIMA CHANCE!!!’ tantas vezes que até o Patrick me bloqueou.”',
+        badge: 'Aluno persistente'
+      },
+      {
+        name: 'Coringa',
+        location: 'Gotham City',
+        quote:
+          '“Antes eu simplesmente mandava spam. Agora faço isso com metodologia.”',
+        badge: 'Aluno certificado'
+      },
+      {
+        name: 'Professor Girafales',
+        location: 'Vila do Chaves',
+        quote:
+          '“Minha turma recebeu 386 mensagens antes do intervalo. Considero um excelente resultado pedagógico.”',
+        badge: 'Instrutor convidado'
+      },
+      {
+        name: 'Jack Sparrow',
+        location: 'Caribe',
+        quote:
+          '“Meu número desapareceu misteriosamente. Não sei como aconteceu. Mas definitivamente não foi culpa minha.”',
+        badge: 'Caso não solucionado'
+      }
+    ]
+  },
+
+  'o-disparo-em-massa': {
+    id: 'o-disparo-em-massa',
+    sectionLabel: 'MONSTROS / 02',
+    title: 'O Disparo em Massa',
+    quote: '“Para que conversar com um cliente por vez se você pode importunar cinquenta mil no mesmo segundo?”',
+    description:
+      'Responsável por submeter listas gigantescas de contatos sem consentimento prévio a fluxos simultâneos de envio. O Disparo em Massa opera sob a premissa de que limites de frequência e boas práticas são apenas sugestões opcionais.',
+    videoTitle: 'Como enviar milhares de mensagens e fingir que foi uma coincidência',
+    videoDuration: '02:15',
+    videoFilePlaceholder: '/videos/o-disparo-em-massa.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-02 // BULK_NO_OPTIN',
+      metricLabel: 'Lote de envio simultâneo',
+      metricValue: '50.000 contatos',
+      accentColor: 'purple',
+      terminalPreview: [
+        'LOAD planilha_contatos_2018_final.csv (50.000 linhas)',
+        'CONFIG delay_between_messages = 0ms',
+        'ALERT: Taxa de envio incompatível com comportamento humano'
+      ]
+    },
+    procedure: [
+      'Importe uma planilha antiga com milhares de números desconhecidos.',
+      'Desative qualquer intervalo de segurança entre os envios.',
+      'Dispare a mesma campanha para toda a base de uma só vez.',
+      'Não verifique se os contatos autorizaram o recebimento.',
+      'Quando o número cair, informe ao suporte que estava apenas testando.'
+    ],
+    expectedResult: {
+      green: 'Campanha iniciada em velocidade máxima',
+      yellow: 'Fila de envio congestionada e alerta de anomalia',
+      red: 'Banimento imediato por automação abusiva'
+    }
+  },
+
+  'o-desconhecido': {
+    id: 'o-desconhecido',
+    sectionLabel: 'MONSTROS / 03',
+    title: 'O Desconhecido',
+    quote: '“Um chip recém-ativado e o desejo sincero de conversar com metade do país no primeiro dia.”',
+    description:
+      'O Desconhecido manifesta-se quando um número sem nenhum histórico de conversas, sem foto de perfil e recém-cadastrado decide iniciar centenas de atendimentos ativos com pessoas que nunca salvaram seu contato na agenda.',
+    videoTitle: 'Como usar um número novo e imediatamente falar com milhares de pessoas',
+    videoDuration: '01:54',
+    videoFilePlaceholder: '/videos/o-desconhecido.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-03 // COLD_CHIP_SPEEDRUN',
+      metricLabel: 'Idade do número conectado',
+      metricValue: '12 minutos',
+      accentColor: 'green',
+      terminalPreview: [
+        'STATUS: Chip ativado há 00h12m',
+        'REPUTATION_SCORE: Inexistente (0 interações recebidas)',
+        'ACTION: Iniciando 1.800 conversas com desconhecidos'
+      ]
+    },
+    procedure: [
+      'Adquira um chip novo e conecte-o imediatamente.',
+      'Pule qualquer etapa de aquecimento ou conversa natural.',
+      'Envie mensagens para contatos que não possuem seu número salvo.',
+      'Receba dezenas de respostas perguntando “quem é você?”.',
+      'Continue enviando até o filtro de segurança interromper a sessão.'
+    ],
+    expectedResult: {
+      green: 'Chip novo conectado com sucesso',
+      yellow: 'Destinatários clicando em “Não conheço este contato”',
+      red: 'Número bloqueado antes de completar uma hora de vida'
+    }
+  },
+
+  'a-aranha-dos-links': {
+    id: 'a-aranha-dos-links',
+    sectionLabel: 'MONSTROS / 04',
+    title: '🕷️ A Aranha dos Links',
+    quote: '“Todo número tem um limite. Alguns links também.”',
+    description:
+      'Especialista em tecer URLs encurtadas, redirecionamentos em cascata e domínios recém-registrados dentro de mensagens comerciais. A Aranha dos Links transforma comunicações comuns em alertas críticos de segurança para os filtros de verificação.',
+    videoTitle: 'Como transformar qualquer mensagem em uma coleção de URLs',
+    videoSubtitle: 'Como aumentar suas chances de banimento usando links',
+    videoDuration: '02:04',
+    videoFilePlaceholder: '/videos/a-aranha-dos-links.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-04 // SUSPICIOUS_URL_WEB',
+      metricLabel: 'Redirecionamentos detectados',
+      metricValue: 'bit.ly → .xyz → .biz',
+      accentColor: 'red',
+      terminalPreview: [
+        'SCANNING payload: "Acesse já http://bit.ly/super-confiavel"',
+        'REDIRECT_CHAIN: 4 saltos para domínio sem reputação',
+        'CRITICAL: Assinatura de link suspeito confirmada'
+      ]
+    },
+    procedure: [
+      'Envie um link.',
+      'Envie outro.',
+      'Utilize um encurtador.',
+      'Envie novamente.',
+      'Não espere o usuário pedir.'
+    ],
+    expectedResult: {
+      green: 'Link enviado',
+      yellow: 'Usuário desconfiado',
+      red: 'Número comprometido'
+    },
+    showDiscreteSpider: true
+  },
+
+  'o-bloqueio-em-massa': {
+    id: 'o-bloqueio-em-massa',
+    sectionLabel: 'MONSTROS / 05',
+    title: 'O Bloqueio em Massa',
+    quote: '“Colecionar bloqueios de clientes nunca foi tão rápido e eficiente.”',
+    description:
+      'O Bloqueio em Massa ocorre quando a abordagem enviada é tão invasiva ou fora de contexto que a reação imediata da maioria dos destinatários é bloquear o remetente nos primeiros segundos de leitura.',
+    videoTitle: 'Como conseguir o maior número possível de bloqueios',
+    videoDuration: '01:59',
+    videoFilePlaceholder: '/videos/o-bloqueio-em-massa.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-05 // MASS_BLOCK_COLLECTOR',
+      metricLabel: 'Taxa de bloqueio por envio',
+      metricValue: '87,4% (Crítico)',
+      accentColor: 'red',
+      terminalPreview: [
+        'EVENT: recipient_blocked_sender (+55 11 9****-8821)',
+        'EVENT: recipient_blocked_sender (+55 21 9****-3109)',
+        'QUALITY_RATING: Rebaixado para Baixo (Vermelho)'
+      ]
+    },
+    procedure: [
+      'Aborde contatos em horários inadequados com textos agressivos.',
+      'Não ofereça opção para o usuário encerrar o atendimento.',
+      'Insista no envio mesmo após feedback negativo.',
+      'Acumule dezenas de bloqueios consecutivos na mesma hora.',
+      'Ignore os avisos de queda na qualidade da conta.'
+    ],
+    expectedResult: {
+      green: 'Mensagens entregues no aparelho do usuário',
+      yellow: 'Índice de qualidade despencando rapidamente',
+      red: 'Número suspenso por excesso de bloqueios e rejeições'
+    }
+  },
+
+  'o-numero-fantasma': {
+    id: 'o-numero-fantasma',
+    sectionLabel: 'MONSTROS / 06',
+    title: 'O Número Fantasma',
+    quote: '“Estava funcionando normalmente ontem à noite. Hoje ninguém sabe o que aconteceu.”',
+    description:
+      'O Número Fantasma é o fenômeno em que uma conexão desaparece sem deixar vestígios aparentes na memória da operação. Segundo os relatos, nenhuma campanha foi feita e nenhuma regra foi violada — o número simplesmente deixou de existir por conta própria.',
+    videoTitle: 'Como fazer seu número desaparecer misteriosamente',
+    videoDuration: '02:22',
+    videoFilePlaceholder: '/videos/o-numero-fantasma.mp4',
+    thumbnailTheme: {
+      codeLabel: 'MOD-06 // GHOST_SESSION_404',
+      metricLabel: 'Estado atual da sessão',
+      metricValue: 'Desconectado (Inexplicável)',
+      accentColor: 'purple',
+      terminalPreview: [
+        '23:58:10 -> 14.000 mensagens enviadas fora do expediente',
+        '00:01:04 -> Sessão encerrada permanentemente pelo provedor',
+        '08:05:00 -> Chamado aberto: "Caiu sozinho durante a madrugada"'
+      ]
+    },
+    procedure: [
+      'Realize todas as práticas não recomendadas no final do expediente.',
+      'Feche o navegador sem verificar os alertas da conta.',
+      'Aguarde a suspensão acontecer durante a madrugada.',
+      'Ao chegar pela manhã, observe que o número não conecta mais.',
+      'Acione o suporte afirmando que o número parou “do nada”.'
+    ],
+    expectedResult: {
+      green: 'Operação encerrada na sexta-feira aparentemente normal',
+      yellow: 'Sessão invalidada silenciosamente durante a noite',
+      red: 'Número desaparecido na segunda-feira às 08h00'
+    },
+    showDiscreteSpider: true
+  },
+
+  'freddy-krueger': {
+    id: 'freddy-krueger',
+    sectionLabel: 'FINAL',
+    title: 'Freddy Krueger',
+    quote: '“Um, dois, o bloqueio vem atrás de você. Três, quatro, é melhor abrir um chamado.”',
+    description:
+      'A convergência de todas as práticas anteriores em um único fluxo operacional. Quando links suspeitos, disparos sem permissão, números recém-criados e mensagens repetidas se unem, o atendimento comum transforma-se no pesadelo definitivo da fila de suporte.',
+    videoTitle: 'Como transformar um atendimento comum em um verdadeiro pesadelo',
+    videoDuration: '02:45',
+    videoFilePlaceholder: '/videos/freddy-krueger.mp4',
+    thumbnailTheme: {
+      codeLabel: 'FINAL // NIGHTMARE_PROTOCOL',
+      metricLabel: 'Nível de incidência no suporte',
+      metricValue: 'Pesadelo Máximo',
+      accentColor: 'red',
+      terminalPreview: [
+        'COMBINING: [spam, bulk_send, cold_number, suspicious_links]',
+        'ANALYST_STATUS: Respirando fundo antes de abrir o ticket',
+        'FINAL_VERDICT: Nenhum número sobreviveu ao procedimento'
+      ]
+    },
+    procedure: [
+      'Combine um número recém-ativado com uma lista de contatos desconhecidos.',
+      'Adicione múltiplos links encurtados logo na primeira mensagem.',
+      'Configure o reenvio automático a cada cinco minutos sem resposta.',
+      'Ignore todos os avisos técnicos da documentação oficial.',
+      'Culpe o sistema quando o pesadelo se concretizar.'
+    ],
+    expectedResult: {
+      green: 'Atendimento iniciado sem seguir nenhuma recomendação',
+      yellow: 'Todos os alertas de segurança acionados simultaneamente',
+      red: 'Pesadelo completo para o número e para o suporte'
+    },
+    showDiscreteSpider: true
+  }
+};

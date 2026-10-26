@@ -1,0 +1,312 @@
+import React, { useState, useEffect } from 'react';
+import { MonsterPageData, PageId, PAGE_ORDER, SIDEBAR_SECTIONS } from '../data/darkDocsData';
+import { Play, AlertCircle, RotateCcw } from 'lucide-react';
+import { DiscreteSpider } from './CobwebDecor';
+
+interface MonsterDocPageProps {
+  data: MonsterPageData;
+  onNavigate: (page: PageId) => void;
+}
+
+export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
+  data,
+  onNavigate
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoLoadError, setVideoLoadError] = useState(false);
+
+  // Reset video state when switching monster pages
+  useEffect(() => {
+    setIsPlaying(false);
+    setVideoLoadError(false);
+  }, [data.id]);
+
+  // Find Previous / Next pages for clean doc navigation at the bottom
+  const currentIndex = PAGE_ORDER.indexOf(data.id);
+  const prevPageId = currentIndex > 0 ? PAGE_ORDER[currentIndex - 1] : null;
+  const nextPageId =
+    currentIndex >= 0 && currentIndex < PAGE_ORDER.length - 1
+      ? PAGE_ORDER[currentIndex + 1]
+      : null;
+
+  const getLabelForPage = (id: PageId | null) => {
+    if (!id) return '';
+    for (const sec of SIDEBAR_SECTIONS) {
+      const found = sec.items.find((i) => i.id === id);
+      if (found) return found.label;
+    }
+    return id;
+  };
+
+  const accentBorderMap = {
+    green: 'border-[#25D366]/30',
+    red: 'border-red-500/30',
+    purple: 'border-purple-500/30',
+    zinc: 'border-zinc-700'
+  };
+
+  const accentBadgeMap = {
+    green: 'text-[#25D366] bg-[#25D366]/10 border-[#25D366]/25',
+    red: 'text-red-400 bg-red-950/40 border-red-500/30',
+    purple: 'text-purple-300 bg-purple-950/40 border-purple-500/30',
+    zinc: 'text-zinc-300 bg-zinc-900 border-zinc-700'
+  };
+
+  return (
+    <article className="relative py-8 sm:py-16 space-y-10 max-w-2xl">
+      {/* Optional discrete spider hanging in top right of specific monster pages */}
+      {data.showDiscreteSpider && (
+        <div className="absolute top-0 right-2 sm:right-6">
+          <DiscreteSpider />
+        </div>
+      )}
+
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+        <span>{data.sectionLabel}</span>
+      </div>
+
+      {/* Header: Title, Suspicious Quote, Short Description */}
+      <header className="space-y-6">
+        <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-100 doc-title-glitch">
+          {data.title}
+        </h1>
+
+        <blockquote className="pl-4 border-l-2 border-zinc-700 text-zinc-300 italic text-sm sm:text-base">
+          {data.quote}
+        </blockquote>
+
+        <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          {data.description}
+        </p>
+      </header>
+
+      {/* Large Video Player Area */}
+      <section className="space-y-3 pt-2" aria-label="Tutorial em vídeo">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-sm sm:text-base font-semibold text-zinc-200">
+            {data.videoSubtitle ?? data.videoTitle}
+          </h2>
+          <span className="text-xs font-mono text-zinc-500 shrink-0">
+            {data.videoDuration}
+          </span>
+        </div>
+
+        {/* Video Frame */}
+        <div
+          className={`relative w-full aspect-video rounded-lg overflow-hidden bg-[#0e0e12] border ${
+            accentBorderMap[data.thumbnailTheme.accentColor]
+          } transition-colors`}
+        >
+          {!isPlaying ? (
+            /* Custom Technical Thumbnail + Subtle Animated PLAY Button */
+            <button
+              type="button"
+              onClick={() => setIsPlaying(true)}
+              className="group relative w-full h-full flex flex-col justify-between p-4 sm:p-6 text-left focus:outline-none bg-[#0c0c10] hover:bg-[#0f0f15] transition-colors"
+            >
+              {/* Top Technical Overlay in Thumbnail */}
+              <div className="w-full flex items-center justify-between gap-2 z-10">
+                <span className="text-[10px] sm:text-xs font-mono text-zinc-500 tracking-wider">
+                  {data.thumbnailTheme.codeLabel}
+                </span>
+                <span
+                  className={`text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded border ${
+                    accentBadgeMap[data.thumbnailTheme.accentColor]
+                  }`}
+                >
+                  {data.thumbnailTheme.metricLabel}: {data.thumbnailTheme.metricValue}
+                </span>
+              </div>
+
+              {/* Center Play Button + Video Title */}
+              <div className="my-auto flex flex-col items-center justify-center text-center gap-3 z-10 px-2">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-zinc-900/90 border border-zinc-700 group-hover:border-[#25D366] flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-lg">
+                  <Play className="w-5 h-5 sm:w-6 sm:h-6 text-[#25D366] fill-[#25D366] ml-0.5 transition-transform duration-300 group-hover:scale-110" />
+                </div>
+                <div className="space-y-1 max-w-md">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block">
+                    TUTORIAL OFICIAL
+                  </span>
+                  <p className="text-xs sm:text-sm font-medium text-zinc-200 group-hover:text-white transition-colors line-clamp-2">
+                    {data.videoTitle}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Terminal Log Lines inside Thumbnail */}
+              <div className="w-full border-t border-zinc-800/80 pt-2.5 hidden sm:block z-10">
+                <div className="space-y-0.5 font-mono text-[11px] text-zinc-500">
+                  {data.thumbnailTheme.terminalPreview.map((line, i) => (
+                    <div key={i} className="truncate">
+                      <span className="text-zinc-600 mr-2">&gt;</span>
+                      <span className={i === 2 ? 'text-red-400/80' : 'text-zinc-400'}>
+                        {line}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bottom Progress Bar Decoration */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-zinc-900">
+                <div className="w-1/4 h-full bg-[#25D366]/60 group-hover:w-1/3 transition-all duration-500" />
+              </div>
+            </button>
+          ) : (
+            /* Active Video Player Area (supports real local file or clean placeholder) */
+            <div className="w-full h-full flex flex-col items-center justify-center bg-[#08080b] p-6 text-center relative">
+              {!videoLoadError ? (
+                <video
+                  src={data.videoFilePlaceholder}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                  onError={() => setVideoLoadError(true)}
+                />
+              ) : (
+                <div className="space-y-4 max-w-md font-mono">
+                  <AlertCircle className="w-7 h-7 text-red-400/80 mx-auto" />
+                  <div className="space-y-1">
+                    <p className="text-xs sm:text-sm text-zinc-200 font-sans font-medium">
+                      {data.videoTitle}
+                    </p>
+                    <p className="text-xs text-zinc-500">
+                      Arquivo de vídeo aguardando inserção em:{' '}
+                      <code className="text-zinc-300">public{data.videoFilePlaceholder}</code>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsPlaying(false)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs text-zinc-300 transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Voltar para a capa</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Procedimento Section */}
+      <section className="space-y-4 pt-2 border-t border-zinc-800/80">
+        <h3 className="text-base sm:text-lg font-semibold text-zinc-100">
+          Procedimento
+        </h3>
+        <ol className="list-decimal list-inside space-y-2 text-sm sm:text-base text-zinc-300">
+          {data.procedure.map((step, index) => (
+            <li key={index} className="leading-relaxed">
+              <span className="text-zinc-300">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Resultado esperado Section */}
+      <section className="space-y-3 pt-2 border-t border-zinc-800/80">
+        <h3 className="text-sm font-semibold text-zinc-200">
+          Resultado esperado:
+        </h3>
+        <div className="space-y-2 text-sm sm:text-base font-mono text-zinc-300">
+          <div>🟢 {data.expectedResult.green}</div>
+          <div>🟡 {data.expectedResult.yellow}</div>
+          <div className="text-red-400">🔴 {data.expectedResult.red}</div>
+        </div>
+      </section>
+
+      {/* Seção de Avaliações / Depoimentos (exclusiva da página "O Spam") */}
+      {data.id === 'o-spam' && data.testimonials && (
+        <section
+          className="pt-10 mt-10 border-t border-zinc-800/80 space-y-8"
+          aria-label="Avaliações dos alunos"
+        >
+          <div className="space-y-2">
+            <h3 className="text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+              ⭐ O que nossos alunos estão dizendo
+            </h3>
+            <p className="text-sm text-zinc-400">
+              Resultados reais de pessoas que aparentemente não aprenderam nada.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {data.testimonials.map((item) => (
+              <div
+                key={item.name}
+                className="p-5 rounded-lg bg-[#0f0f14] border border-zinc-800/80 flex flex-col justify-between gap-4"
+              >
+                <div className="space-y-3">
+                  <div
+                    className="text-xs tracking-widest select-none"
+                    aria-label="5 de 5 estrelas"
+                  >
+                    ⭐⭐⭐⭐⭐
+                  </div>
+
+                  <div>
+                    <span className="text-sm font-semibold text-zinc-100">
+                      {item.name}
+                    </span>
+                    <span className="text-xs text-zinc-500">
+                      {' '}
+                      — {item.location}
+                    </span>
+                  </div>
+
+                  <blockquote className="text-sm text-zinc-300 leading-relaxed">
+                    {item.quote}
+                  </blockquote>
+                </div>
+
+                <div className="pt-2 border-t border-zinc-800/60">
+                  <span className="inline-block text-[11px] font-mono text-zinc-400 bg-zinc-900/90 border border-zinc-800 px-2.5 py-0.5 rounded">
+                    {item.badge}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xs text-zinc-500 leading-relaxed pt-2">
+            ⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realmente realizou o treinamento. Os números utilizados nos exemplos também não existem.
+          </p>
+        </section>
+      )}
+
+      {/* Standard Documentation Footer Navigation (Prev / Next) */}
+      <nav
+        className="pt-8 mt-12 border-t border-zinc-800/80 flex items-center justify-between gap-4 text-xs sm:text-sm"
+        aria-label="Paginação"
+      >
+        {prevPageId ? (
+          <button
+            type="button"
+            onClick={() => onNavigate(prevPageId)}
+            className="text-left text-zinc-400 hover:text-zinc-100 transition-colors"
+          >
+            <span className="block text-[11px] font-mono text-zinc-500">Anterior</span>
+            <span className="font-medium">← {getLabelForPage(prevPageId)}</span>
+          </button>
+        ) : (
+          <div />
+        )}
+
+        {nextPageId ? (
+          <button
+            type="button"
+            onClick={() => onNavigate(nextPageId)}
+            className="text-right text-zinc-400 hover:text-[#25D366] transition-colors"
+          >
+            <span className="block text-[11px] font-mono text-zinc-500">Próximo</span>
+            <span className="font-medium">{getLabelForPage(nextPageId)} →</span>
+          </button>
+        ) : (
+          <div />
+        )}
+      </nav>
+    </article>
+  );
+};
