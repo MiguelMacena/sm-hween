@@ -761,6 +761,74 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Todos os alertas de segurança acionados simultaneamente',
       red: 'Pesadelo completo para o número e para o suporte'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: '“Porque alguns treinamentos você esquece. Este você leva para os sonhos.”',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '6.666 avaliações',
+        subtext: '“A maioria avaliou durante o sono.”'
+      },
+      disclaimer:
+        '⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realizou o treinamento. Qualquer semelhança com atendimentos que acontecem às 03:00 da manhã é mera coincidência.'
+    },
+    testimonials: [
+      {
+        name: 'Freddy Krueger',
+        location: 'Elm Street',
+        quote:
+          '“Antes eu aparecia nos sonhos das pessoas. Depois deste treinamento, descobri que também posso aparecer nos atendimentos.”',
+        badge: 'Especialista em pesadelos'
+      },
+      {
+        name: 'Jason Voorhees',
+        location: 'Crystal Lake',
+        quote:
+          '“Não sou muito de falar. Normalmente só apareço, assusto alguém e vou embora. Esse curso me ensinou que posso fazer exatamente a mesma coisa em um atendimento.”',
+        badge: 'Aluno silencioso'
+      },
+      {
+        name: 'Pennywise',
+        location: 'Derry',
+        quote:
+          '“Eu costumava assustar crianças. Depois do treinamento, percebi que mandar uma mensagem às 03:00 da manhã para um número desconhecido é muito mais eficiente.”',
+        badge: 'Especialista em horários alternativos'
+      },
+      {
+        name: 'Coringa',
+        location: 'Gotham City',
+        quote:
+          '“A parte mais interessante foi descobrir que algumas pessoas conseguem transformar um simples atendimento em algo muito mais perturbador do que eu faria.”',
+        badge: 'Caos aplicado ao atendimento'
+      },
+      {
+        name: 'Michael Myers',
+        location: 'Haddonfield',
+        quote:
+          '“Não entendi muito bem o treinamento. Só fiquei parado olhando para a tela por 17 minutos. O usuário encerrou o atendimento sozinho.”',
+        badge: 'Metodologia contemplativa'
+      },
+      {
+        name: 'Chucky',
+        location: 'Hackensack',
+        quote:
+          '“Excelente treinamento. Pequeno, simples e extremamente inconveniente. Me identifiquei bastante.”',
+        badge: 'Especialista em perturbação'
+      },
+      {
+        name: 'Mortícia Addams',
+        location: 'Nevermore',
+        quote:
+          '“Finalmente encontrei um treinamento compatível com minha rotina. Sono, pesadelos, mensagens estranhas e pessoas acordando assustadas. Muito elegante.”',
+        badge: 'Aluna de excelência mórbida'
+      },
+      {
+        name: 'Scooby-Doo',
+        location: 'Máquina de Mistério',
+        quote:
+          '“Recebi uma mensagem durante um sonho. Acordei assustado. Voltei a dormir. A mensagem estava lá novamente. Definitivamente não era um fantasma.”',
+        badge: 'Investigação paranormal concluída'
+      }
+    ]
   }
 };
