@@ -28,6 +28,9 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   const [evadeStep, setEvadeStep] = useState(0);
   const [safeLinkClicked, setSafeLinkClicked] = useState(false);
   const [massBlockFeedback, setMassBlockFeedback] = useState<'sim' | 'nao' | null>(null);
+  const [supportDisappeared, setSupportDisappeared] = useState(false);
+  const [pingStage, setPingStage] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
+  const [lastSeenRevealed, setLastSeenRevealed] = useState(false);
 
   // Reset interactive states when switching monster pages
   useEffect(() => {
@@ -38,7 +41,26 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
     setEvadeStep(0);
     setSafeLinkClicked(false);
     setMassBlockFeedback(null);
+    setSupportDisappeared(false);
+    setPingStage(0);
+    setLastSeenRevealed(false);
+
+    if (data.id === 'o-numero-fantasma') {
+      const timer = setTimeout(() => {
+        setSupportDisappeared(true);
+      }, 4500);
+      return () => clearTimeout(timer);
+    }
   }, [data.id]);
+
+  const handleTriggerPing = () => {
+    if (pingStage > 0 && pingStage < 5) return;
+    setPingStage(1);
+    setTimeout(() => setPingStage(2), 700);
+    setTimeout(() => setPingStage(3), 1400);
+    setTimeout(() => setPingStage(4), 2100);
+    setTimeout(() => setPingStage(5), 2900);
+  };
 
   // Find Previous / Next pages for clean doc navigation at the bottom
   const currentIndex = PAGE_ORDER.indexOf(data.id);
@@ -498,6 +520,102 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
                     Obrigado! Sua opinião será ignorada com sucesso.
                   </p>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* Detalhe especial exclusivo da página "O Número Fantasma" */}
+          {data.id === 'o-numero-fantasma' && (
+            <div className="pt-4 border-t border-zinc-800/80 space-y-6">
+              {/* 🔎 ÚLTIMA LOCALIZAÇÃO CONHECIDA */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400">
+                  🔎 ÚLTIMA LOCALIZAÇÃO CONHECIDA
+                </h4>
+
+                <div className="p-4 rounded-lg bg-[#0c0c10] border border-zinc-800/80 font-mono text-xs space-y-2 text-zinc-300">
+                  <div>
+                    <strong className="text-zinc-400">Status:</strong> ❌ Offline
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Última atividade:</strong> Ontem
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Última mensagem:</strong> “Só um momento.”
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Última resposta:</strong> Nenhuma
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Responsável pelo desaparecimento:</strong> Desconhecido
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Previsão de retorno:</strong> Em análise
+                  </div>
+                  <div>
+                    <strong className="text-zinc-400">Probabilidade de voltar sozinho:</strong> 3%
+                  </div>
+                </div>
+
+                <blockquote className="pl-3 border-l-2 border-zinc-700 text-xs sm:text-sm font-medium text-zinc-300 transition-opacity duration-500">
+                  {supportDisappeared
+                    ? 'O suporte também desapareceu.'
+                    : 'O suporte continua procurando.'}
+                </blockquote>
+              </div>
+
+              {/* Easter Egg — "PING" & Outro Easter Egg ("Última vez visto") */}
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pt-1">
+                <div className="space-y-2.5">
+                  <button
+                    type="button"
+                    onClick={handleTriggerPing}
+                    disabled={pingStage > 0 && pingStage < 5}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 disabled:opacity-60 border border-zinc-800 text-xs font-mono text-zinc-200 transition-colors"
+                  >
+                    <span>📡 PINGAR NÚMERO</span>
+                  </button>
+
+                  {pingStage > 0 && (
+                    <div className="p-3 rounded-lg bg-[#0c0c10] border border-zinc-800/80 font-mono text-xs space-y-1 text-zinc-400">
+                      <div>Enviando ping...</div>
+                      {pingStage >= 2 && <div>...</div>}
+                      {pingStage >= 3 && <div>......</div>}
+                      {pingStage >= 4 && <div>.........</div>}
+                      {pingStage === 5 && (
+                        <div className="pt-1 space-y-1">
+                          <div className="text-red-400 font-semibold">
+                            ❌ Nenhuma resposta
+                          </div>
+                          <div className="text-zinc-300">
+                            Ele sabe que você está procurando.
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Outro Easter Egg: Última vez visto */}
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onMouseEnter={() => setLastSeenRevealed(true)}
+                  onMouseLeave={() => setLastSeenRevealed(false)}
+                  onClick={() => setLastSeenRevealed((prev) => !prev)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setLastSeenRevealed((prev) => !prev);
+                    }
+                  }}
+                  className="text-xs font-mono text-zinc-500 cursor-pointer select-none focus:outline-none sm:text-right"
+                >
+                  <span className="block text-zinc-500">Última vez visto:</span>
+                  <span className="text-zinc-300 font-medium">
+                    {lastSeenRevealed ? '“Sempre ontem.”' : '“Ontem.”'}
+                  </span>
+                </div>
               </div>
             </div>
           )}

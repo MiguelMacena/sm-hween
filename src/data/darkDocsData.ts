@@ -657,7 +657,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Sessão invalidada silenciosamente durante a noite',
       red: 'Número desaparecido na segunda-feira às 08h00'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: 'Estava funcionando ontem. Hoje ninguém sabe onde está.',
+      ratingSummary: {
+        score: '4,8 / 5',
+        totalCount: '13.666 avaliações',
+        subtext: 'Última avaliação recebida: ontem.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Caso este número volte a funcionar, favor não perguntar como.'
+    },
+    testimonials: [
+      {
+        name: 'Ken',
+        location: 'Barbielândia',
+        quote:
+          '“Ontem estava tudo funcionando perfeitamente. Hoje ninguém consegue encontrar meu número. Comecei a desconfiar quando nem a Barbie conseguiu me localizar.”',
+        badge: 'Localização não encontrada'
+      },
+      {
+        name: 'Sherlock Holmes',
+        location: 'Baker Street',
+        quote:
+          '“Investiguei durante três dias. Sem mensagens. Sem chamadas. Sem atividade. A única evidência encontrada foi alguém dizendo: ‘mas ontem estava funcionando’.”',
+        badge: 'Caso inconclusivo'
+      },
+      {
+        name: 'Jack Reacher',
+        location: 'Localização desconhecida',
+        quote:
+          '“Procurei o número em todos os lugares. Quando finalmente encontrei, ele desapareceu novamente.”',
+        badge: 'Rastreamento impossível'
+      },
+      {
+        name: 'Elsa',
+        location: 'Arendelle',
+        quote:
+          '“Eu tentei ligar. Não funcionou. Mandei mensagem. Não respondeu. Então simplesmente deixei ir.”',
+        badge: 'Let it go'
+      },
+      {
+        name: 'Dr. Emmett Brown',
+        location: 'Hill Valley',
+        quote:
+          '“Voltei para ontem para verificar se o número estava funcionando. Estava. Voltei para hoje. Não está mais.”',
+        badge: 'Problema temporal'
+      },
+      {
+        name: 'Davy Jones',
+        location: 'O Holandês Voador',
+        quote:
+          '“Alguns números desaparecem do mar. Outros desaparecem do WhatsApp. Em ambos os casos, ninguém sabe onde foram parar.”',
+        badge: 'Perdido no oceano'
+      },
+      {
+        name: 'Merlin',
+        location: 'Camelot',
+        quote:
+          '“Utilizei todos os feitiços conhecidos para localizar o número. Nenhum funcionou. Talvez ele tenha simplesmente decidido partir para outra dimensão.”',
+        badge: 'Magia insuficiente'
+      },
+      {
+        name: 'Gandalf',
+        location: 'Terra-média',
+        quote:
+          '“O número estava funcionando. Então desapareceu. Disse que voltaria. Não voltou.”',
+        badge: 'Você não vai passar'
+      }
+    ]
   },
 
   'freddy-krueger': {
