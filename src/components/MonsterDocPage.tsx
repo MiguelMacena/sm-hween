@@ -8,17 +8,34 @@ interface MonsterDocPageProps {
   onNavigate: (page: PageId) => void;
 }
 
+const EVADE_OFFSETS = [
+  { x: 0, y: 0 },
+  { x: 18, y: -6 },
+  { x: -14, y: 8 },
+  { x: 24, y: 6 },
+  { x: -8, y: -10 },
+  { x: 12, y: 10 }
+];
+
 export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   data,
   onNavigate
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoLoadError, setVideoLoadError] = useState(false);
+  const [mysteryRevealed, setMysteryRevealed] = useState(false);
+  const [helpfulClicked, setHelpfulClicked] = useState(false);
+  const [evadeStep, setEvadeStep] = useState(0);
+  const [safeLinkClicked, setSafeLinkClicked] = useState(false);
 
-  // Reset video state when switching monster pages
+  // Reset interactive states when switching monster pages
   useEffect(() => {
     setIsPlaying(false);
     setVideoLoadError(false);
+    setMysteryRevealed(false);
+    setHelpfulClicked(false);
+    setEvadeStep(0);
+    setSafeLinkClicked(false);
   }, [data.id]);
 
   // Find Previous / Next pages for clean doc navigation at the bottom
@@ -51,6 +68,8 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
     purple: 'text-purple-300 bg-purple-950/40 border-purple-500/30',
     zinc: 'text-zinc-300 bg-zinc-900 border-zinc-700'
   };
+
+  const currentOffset = EVADE_OFFSETS[evadeStep % EVADE_OFFSETS.length];
 
   return (
     <article className="relative py-8 sm:py-16 space-y-10 max-w-2xl">
@@ -267,29 +286,131 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
                     ⭐⭐⭐⭐⭐
                   </div>
 
-                  <div>
-                    <span className="text-sm font-semibold text-zinc-100">
-                      {item.name}
-                    </span>
-                    <span className="text-xs text-zinc-500">
-                      {' '}
-                      — {item.location}
-                    </span>
-                  </div>
+                  {item.isMysteryIdentity ? (
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onMouseEnter={() => setMysteryRevealed(true)}
+                      onMouseLeave={() => setMysteryRevealed(false)}
+                      onClick={() => setMysteryRevealed((prev) => !prev)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setMysteryRevealed((prev) => !prev);
+                        }
+                      }}
+                      className="cursor-pointer select-none focus:outline-none"
+                    >
+                      {mysteryRevealed ? (
+                        <span className="text-sm font-medium text-zinc-200 italic block">
+                          “Você realmente achou que descobriria?”
+                        </span>
+                      ) : (
+                        <div className="space-y-0.5">
+                          <span className="text-sm font-semibold text-zinc-100 block">
+                            {item.name}
+                          </span>
+                          <span className="text-xs text-zinc-500 block">
+                            {item.location}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="text-sm font-semibold text-zinc-100">
+                        {item.name}
+                      </span>
+                      <span className="text-xs text-zinc-500">
+                        {' '}
+                        — {item.location}
+                      </span>
+                    </div>
+                  )}
 
-                  <blockquote className="text-sm text-zinc-300 leading-relaxed">
+                  <blockquote className="text-sm text-zinc-300 leading-relaxed whitespace-pre-line">
                     {item.quote}
                   </blockquote>
                 </div>
 
-                <div className="pt-2 border-t border-zinc-800/60">
+                <div className="pt-2 border-t border-zinc-800/60 space-y-3">
                   <span className="inline-block text-[11px] font-mono text-zinc-400 bg-zinc-900/90 border border-zinc-800 px-2.5 py-0.5 rounded">
                     {item.badge}
                   </span>
+
+                  {/* Detalhe escondido em um dos cards da Aranha dos Links */}
+                  {item.hasHelpfulPrompt && (
+                    <div className="pt-2 border-t border-zinc-800/40 text-[11px] text-zinc-500 space-y-1.5">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span>Esta avaliação foi útil?</span>
+                        <div className="inline-flex items-center gap-1.5 font-mono">
+                          <button
+                            type="button"
+                            onClick={() => setHelpfulClicked(false)}
+                            className="hover:text-zinc-300 transition-colors"
+                          >
+                            Sim
+                          </button>
+                          <span>|</span>
+                          <button
+                            type="button"
+                            onClick={() => setHelpfulClicked(false)}
+                            className="hover:text-zinc-300 transition-colors"
+                          >
+                            Não
+                          </button>
+                          <span>|</span>
+                          <button
+                            type="button"
+                            onClick={() => setHelpfulClicked(true)}
+                            className="text-zinc-400 underline decoration-zinc-700 hover:text-[#25D366] transition-colors"
+                          >
+                            Clique aqui
+                          </button>
+                        </div>
+                      </div>
+
+                      {helpfulClicked && (
+                        <p className="text-[11px] font-mono text-red-400">
+                          ⚠️ A Aranha dos Links agradece pela colaboração.
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Detalhe especial exclusivo da página "A Aranha dos Links" */}
+          {data.id === 'a-aranha-dos-links' && (
+            <div className="pt-2 space-y-2">
+              <div className="inline-block">
+                <button
+                  type="button"
+                  onMouseEnter={() => setEvadeStep((prev) => prev + 1)}
+                  onClick={() => setSafeLinkClicked(true)}
+                  style={{
+                    transform: `translate(${currentOffset.x}px, ${currentOffset.y}px)`
+                  }}
+                  className="text-xs font-mono text-[#25D366]/90 hover:text-[#25D366] underline decoration-[#25D366]/40 underline-offset-4 transition-transform duration-150 focus:outline-none text-left"
+                >
+                  → Clique aqui para verificar se este link é seguro
+                </button>
+              </div>
+
+              {safeLinkClicked && (
+                <div className="p-3.5 rounded-lg bg-[#0f0f14] border border-zinc-800/80 space-y-1 max-w-md">
+                  <p className="text-xs sm:text-sm font-medium text-zinc-200">
+                    🕷️ Sério que você clicou?
+                  </p>
+                  <p className="text-xs text-zinc-400">
+                    Depois de tudo que você acabou de ler?
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
           <p className="text-xs text-zinc-500 leading-relaxed pt-2">
             {data.testimonialsMeta.disclaimer}

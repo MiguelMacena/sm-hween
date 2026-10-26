@@ -22,6 +22,8 @@ export interface TestimonialItem {
   location: string;
   quote: string;
   badge: string;
+  isMysteryIdentity?: boolean;
+  hasHelpfulPrompt?: boolean;
 }
 
 export interface TestimonialsMeta {
@@ -335,7 +337,83 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Chip novo conectado com sucesso',
       yellow: 'Destinatários clicando em “Não conheço este contato”',
       red: 'Número bloqueado antes de completar uma hora de vida'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Eles não sabem quem você é. E esse é exatamente o objetivo.',
+      ratingSummary: {
+        score: '5,0 / 5',
+        totalCount: '??? avaliações',
+        subtext: 'Não sabemos quem avaliou.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Caso reconheça algum dos avaliadores, favor não informar. Eles preferem continuar desconhecidos.'
+    },
+    testimonials: [
+      {
+        name: 'Batman',
+        location: 'Gotham City',
+        quote:
+          '“Trabalho no anonimato há anos. Mesmo assim, até eu achei estranho mandar mensagem para alguém que nunca falou comigo.”',
+        badge: 'Identidade protegida'
+      },
+      {
+        name: 'John Cena',
+        location: 'West Newbury',
+        quote:
+          '“Eles não conseguem me ver. Agora também não conseguem descobrir de onde veio a mensagem.”',
+        badge: 'Contato não identificado'
+      },
+      {
+        name: 'Scooby-Doo',
+        location: 'Máquina de Mistério',
+        quote:
+          '“Recebi uma mensagem de um número desconhecido. Depois de investigar, descobri que era eu mesmo.”',
+        badge: 'Mistério solucionado'
+      },
+      {
+        name: 'Agente 47',
+        location: 'Localização desconhecida',
+        quote:
+          '“Número novo. Nenhum histórico. Nenhuma conversa anterior. Exatamente como eu gosto.”',
+        badge: 'Operação silenciosa'
+      },
+      {
+        name: 'Homem-Aranha',
+        location: 'Queens',
+        quote:
+          '“Meu sentido aranha disparou quando apareceu ‘número desconhecido’. Ignorei. Cinco minutos depois chegaram mais oito mensagens.”',
+        badge: 'Perigo detectado'
+      },
+      {
+        name: 'Sherlock Holmes',
+        location: 'Baker Street',
+        quote:
+          '“Analisei todas as evidências. Não havia conversa anterior, apresentação ou contexto. Elementar: bloqueei.”',
+        badge: 'Caso encerrado'
+      },
+      {
+        name: 'Wandinha Addams',
+        location: 'Nevermore',
+        quote:
+          '“Uma pessoa desconhecida apareceu sem ser convidada e começou a mandar mensagens. Finalmente alguém com habilidades sociais piores que as minhas.”',
+        badge: 'Socialmente aprovado'
+      },
+      {
+        name: 'Ghostface',
+        location: 'Woodsboro',
+        quote:
+          '“Perguntei ‘qual é o seu filme de terror favorito?’. A pessoa respondeu ‘quem é?’. Nunca me senti tão profissional.”',
+        badge: 'Número confidencial'
+      },
+      {
+        name: 'Desconhecido',
+        location: 'Localização: desconhecida',
+        quote:
+          '“Enviei uma mensagem sem foto, sem nome e sem contexto. Quando perguntaram ‘quem está falando?’, visualizei e não respondi.”',
+        badge: 'Remetente oculto',
+        isMysteryIdentity: true
+      }
+    ]
   },
 
   'a-aranha-dos-links': {
@@ -372,7 +450,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Usuário desconfiado',
       red: 'Número comprometido'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: 'Um clique pode mudar tudo. Geralmente para pior.',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '6.666 avaliações',
+        subtext: 'Todas vieram do mesmo link.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. A Aranha dos Links recomenda não clicar em absolutamente nada nesta página. Inclusive neste aviso.'
+    },
+    testimonials: [
+      {
+        name: 'Peter Parker',
+        location: 'Queens',
+        quote:
+          '“Passei anos aprendendo que com grandes poderes vêm grandes responsabilidades. Ninguém falou nada sobre grandes quantidades de links.”',
+        badge: 'Especialista em teias'
+      },
+      {
+        name: 'Mario',
+        location: 'Reino dos Cogumelos',
+        quote:
+          '“Cliquei achando que tinha uma princesa do outro lado. Fui redirecionado sete vezes e terminei numa página de promoção.”',
+        badge: 'Obrigado, Mario! Mas seu link está em outro domínio'
+      },
+      {
+        name: 'Neo',
+        location: 'Matrix',
+        quote:
+          '“Morpheus me ofereceu duas opções: a pílula azul e a vermelha. Cliquei num bit.ly que apareceu do lado.”',
+        badge: 'Escolha questionável'
+      },
+      {
+        name: 'Indiana Jones',
+        location: 'Localização desconhecida',
+        quote:
+          '“Já entrei em templos amaldiçoados, fugi de pedras gigantes e procurei artefatos perdidos. Mesmo assim, eu não clicaria nesse link.”',
+        badge: 'Perigo arqueológico'
+      },
+      {
+        name: 'Link',
+        location: 'Hyrule',
+        quote:
+          '“Passei a vida inteira sendo chamado de Link. Finalmente encontrei um lugar onde isso é considerado uma ameaça.”',
+        badge: 'O próprio Link'
+      },
+      {
+        name: 'Gollum',
+        location: 'Terra-média',
+        quote:
+          '“Meu precioso... bit.ly/ganhe-agora. Cliquei 37 vezes. Ainda estou aguardando meu prêmio.”',
+        badge: 'Link precioso'
+      },
+      {
+        name: 'Deadpool',
+        location: 'Localização censurada',
+        quote:
+          '“O endereço terminava em .xyz, tinha seis redirecionamentos e dizia ‘100% seguro’. Obviamente eu cliquei.”',
+        badge: 'Usuário consciente',
+        hasHelpfulPrompt: true
+      },
+      {
+        name: 'Dora, a Aventureira',
+        location: 'Localização não encontrada',
+        quote: '“Você consegue encontrar o link confiável?”\n“...”\n“EU TAMBÉM NÃO!”',
+        badge: 'Exploradora de URLs'
+      }
+    ]
   },
 
   'o-bloqueio-em-massa': {
