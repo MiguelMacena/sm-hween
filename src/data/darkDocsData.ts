@@ -22,6 +22,18 @@ export interface TestimonialItem {
   location: string;
   quote: string;
   badge: string;
+  isMysteryIdentity?: boolean;
+  hasHelpfulPrompt?: boolean;
+}
+
+export interface TestimonialsMeta {
+  subtitle: string;
+  disclaimer: string;
+  ratingSummary?: {
+    score: string;
+    totalCount: string;
+    subtext: string;
+  };
 }
 
 export interface MonsterPageData {
@@ -48,6 +60,7 @@ export interface MonsterPageData {
     red: string;
   };
   showDiscreteSpider?: boolean;
+  testimonialsMeta?: TestimonialsMeta;
   testimonials?: TestimonialItem[];
 }
 
@@ -123,6 +136,11 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Primeira mensagem entregue',
       yellow: 'Destinatário irritado na quinta repetição',
       red: 'Conta denunciada e restrita por spam'
+    },
+    testimonialsMeta: {
+      subtitle: 'Resultados reais de pessoas que aparentemente não aprenderam nada.',
+      disclaimer:
+        '⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realmente realizou o treinamento. Os números utilizados nos exemplos também não existem.'
     },
     testimonials: [
       {
@@ -216,7 +234,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Campanha iniciada em velocidade máxima',
       yellow: 'Fila de envio congestionada e alerta de anomalia',
       red: 'Banimento imediato por automação abusiva'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Milhares de mensagens. Centenas de bloqueios. Um único sonho.',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '48.732 avaliações',
+        subtext: '48.731 foram enviadas ao mesmo tempo.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Resultados podem variar dependendo da velocidade com que seu número for bloqueado.'
+    },
+    testimonials: [
+      {
+        name: 'Thanos',
+        location: 'Titã',
+        quote:
+          '“Antes eu precisava estalar os dedos. Agora consigo atingir metade da população com apenas um disparo.”',
+        badge: '50% de alcance'
+      },
+      {
+        name: 'Buzz Lightyear',
+        location: 'Comando Estelar',
+        quote:
+          '“Antes eu disparava para alguns contatos. Agora é ao infinito e além.”',
+        badge: 'Sem limite conhecido'
+      },
+      {
+        name: 'Dom Toretto',
+        location: 'Los Angeles',
+        quote:
+          '“Não importa se são 10 contatos ou 10 mil contatos. O importante é disparar em família.”',
+        badge: 'Disparo em família'
+      },
+      {
+        name: 'Ash Ketchum',
+        location: 'Pallet',
+        quote:
+          '“Meu objetivo sempre foi alcançar todos. Finalmente consegui. Infelizmente, todos me bloquearam.”',
+        badge: 'Temos que enviar'
+      },
+      {
+        name: 'Sonic',
+        location: 'Green Hill',
+        quote:
+          '“10.000 mensagens em poucos segundos. Achei rápido. O bloqueio foi mais rápido.”',
+        badge: 'Novo recorde'
+      },
+      {
+        name: 'Gru',
+        location: 'Laboratório Secreto',
+        quote:
+          '“Meus Minions selecionaram ‘Enviar para todos’. Pela primeira vez, eles executaram o plano perfeitamente.”',
+        badge: 'Plano executado'
+      },
+      {
+        name: 'Walter White',
+        location: 'Albuquerque',
+        quote:
+          '“Precisávamos aumentar a distribuição. A distribuição aumentou. As denúncias também.”',
+        badge: 'Especialista em distribuição'
+      },
+      {
+        name: 'Flash',
+        location: 'Central City',
+        quote:
+          '“Enviei 30 mil mensagens antes do sistema perceber. Por aproximadamente quatro segundos me senti imparável.”',
+        badge: 'Performance excepcional'
+      }
+    ]
   },
 
   'o-desconhecido': {
@@ -251,7 +337,83 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Chip novo conectado com sucesso',
       yellow: 'Destinatários clicando em “Não conheço este contato”',
       red: 'Número bloqueado antes de completar uma hora de vida'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Eles não sabem quem você é. E esse é exatamente o objetivo.',
+      ratingSummary: {
+        score: '5,0 / 5',
+        totalCount: '??? avaliações',
+        subtext: 'Não sabemos quem avaliou.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Caso reconheça algum dos avaliadores, favor não informar. Eles preferem continuar desconhecidos.'
+    },
+    testimonials: [
+      {
+        name: 'Batman',
+        location: 'Gotham City',
+        quote:
+          '“Trabalho no anonimato há anos. Mesmo assim, até eu achei estranho mandar mensagem para alguém que nunca falou comigo.”',
+        badge: 'Identidade protegida'
+      },
+      {
+        name: 'John Cena',
+        location: 'West Newbury',
+        quote:
+          '“Eles não conseguem me ver. Agora também não conseguem descobrir de onde veio a mensagem.”',
+        badge: 'Contato não identificado'
+      },
+      {
+        name: 'Scooby-Doo',
+        location: 'Máquina de Mistério',
+        quote:
+          '“Recebi uma mensagem de um número desconhecido. Depois de investigar, descobri que era eu mesmo.”',
+        badge: 'Mistério solucionado'
+      },
+      {
+        name: 'Agente 47',
+        location: 'Localização desconhecida',
+        quote:
+          '“Número novo. Nenhum histórico. Nenhuma conversa anterior. Exatamente como eu gosto.”',
+        badge: 'Operação silenciosa'
+      },
+      {
+        name: 'Homem-Aranha',
+        location: 'Queens',
+        quote:
+          '“Meu sentido aranha disparou quando apareceu ‘número desconhecido’. Ignorei. Cinco minutos depois chegaram mais oito mensagens.”',
+        badge: 'Perigo detectado'
+      },
+      {
+        name: 'Sherlock Holmes',
+        location: 'Baker Street',
+        quote:
+          '“Analisei todas as evidências. Não havia conversa anterior, apresentação ou contexto. Elementar: bloqueei.”',
+        badge: 'Caso encerrado'
+      },
+      {
+        name: 'Wandinha Addams',
+        location: 'Nevermore',
+        quote:
+          '“Uma pessoa desconhecida apareceu sem ser convidada e começou a mandar mensagens. Finalmente alguém com habilidades sociais piores que as minhas.”',
+        badge: 'Socialmente aprovado'
+      },
+      {
+        name: 'Ghostface',
+        location: 'Woodsboro',
+        quote:
+          '“Perguntei ‘qual é o seu filme de terror favorito?’. A pessoa respondeu ‘quem é?’. Nunca me senti tão profissional.”',
+        badge: 'Número confidencial'
+      },
+      {
+        name: 'Desconhecido',
+        location: 'Localização: desconhecida',
+        quote:
+          '“Enviei uma mensagem sem foto, sem nome e sem contexto. Quando perguntaram ‘quem está falando?’, visualizei e não respondi.”',
+        badge: 'Remetente oculto',
+        isMysteryIdentity: true
+      }
+    ]
   },
 
   'a-aranha-dos-links': {
@@ -288,7 +450,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Usuário desconfiado',
       red: 'Número comprometido'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: 'Um clique pode mudar tudo. Geralmente para pior.',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '6.666 avaliações',
+        subtext: 'Todas vieram do mesmo link.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. A Aranha dos Links recomenda não clicar em absolutamente nada nesta página. Inclusive neste aviso.'
+    },
+    testimonials: [
+      {
+        name: 'Peter Parker',
+        location: 'Queens',
+        quote:
+          '“Passei anos aprendendo que com grandes poderes vêm grandes responsabilidades. Ninguém falou nada sobre grandes quantidades de links.”',
+        badge: 'Especialista em teias'
+      },
+      {
+        name: 'Mario',
+        location: 'Reino dos Cogumelos',
+        quote:
+          '“Cliquei achando que tinha uma princesa do outro lado. Fui redirecionado sete vezes e terminei numa página de promoção.”',
+        badge: 'Obrigado, Mario! Mas seu link está em outro domínio'
+      },
+      {
+        name: 'Neo',
+        location: 'Matrix',
+        quote:
+          '“Morpheus me ofereceu duas opções: a pílula azul e a vermelha. Cliquei num bit.ly que apareceu do lado.”',
+        badge: 'Escolha questionável'
+      },
+      {
+        name: 'Indiana Jones',
+        location: 'Localização desconhecida',
+        quote:
+          '“Já entrei em templos amaldiçoados, fugi de pedras gigantes e procurei artefatos perdidos. Mesmo assim, eu não clicaria nesse link.”',
+        badge: 'Perigo arqueológico'
+      },
+      {
+        name: 'Link',
+        location: 'Hyrule',
+        quote:
+          '“Passei a vida inteira sendo chamado de Link. Finalmente encontrei um lugar onde isso é considerado uma ameaça.”',
+        badge: 'O próprio Link'
+      },
+      {
+        name: 'Gollum',
+        location: 'Terra-média',
+        quote:
+          '“Meu precioso... bit.ly/ganhe-agora. Cliquei 37 vezes. Ainda estou aguardando meu prêmio.”',
+        badge: 'Link precioso'
+      },
+      {
+        name: 'Deadpool',
+        location: 'Localização censurada',
+        quote:
+          '“O endereço terminava em .xyz, tinha seis redirecionamentos e dizia ‘100% seguro’. Obviamente eu cliquei.”',
+        badge: 'Usuário consciente',
+        hasHelpfulPrompt: true
+      },
+      {
+        name: 'Dora, a Aventureira',
+        location: 'Localização não encontrada',
+        quote: '“Você consegue encontrar o link confiável?”\n“...”\n“EU TAMBÉM NÃO!”',
+        badge: 'Exploradora de URLs'
+      }
+    ]
   },
 
   'o-bloqueio-em-massa': {
@@ -323,7 +553,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Mensagens entregues no aparelho do usuário',
       yellow: 'Índice de qualidade despencando rapidamente',
       red: 'Número suspenso por excesso de bloqueios e rejeições'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Nem todo mundo vai gostar de você. No nosso caso, ninguém.',
+      ratingSummary: {
+        score: '5,0 / 5',
+        totalCount: '0 avaliações verificadas',
+        subtext: 'Os outros usuários nos bloquearam antes de avaliar.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Se você não gostou desta seção, fique à vontade para bloqueá-la também.'
+    },
+    testimonials: [
+      {
+        name: 'Shrek',
+        location: 'Pântano',
+        quote:
+          '“Passei anos tentando afastar todo mundo do meu pântano. Descobri que era muito mais fácil mandar algumas mensagens.”',
+        badge: 'Distância social máxima'
+      },
+      {
+        name: 'Loki',
+        location: 'Asgard',
+        quote:
+          '“Conquistei inimigos em nove reinos. Ainda assim, nunca fui bloqueado por tanta gente ao mesmo tempo.”',
+        badge: 'Recordista interdimensional'
+      },
+      {
+        name: 'Cebolinha',
+        location: 'Bairro do Limoeiro',
+        quote:
+          '“Meu plano infalível funcionou. Todo mundo me bloqueou. Agora só pleciso descobrir qual ela a segunda palte do plano.”',
+        badge: 'Plano infalível'
+      },
+      {
+        name: 'Dr. House',
+        location: 'Princeton-Plainsboro',
+        quote:
+          '“As pessoas já não gostavam de falar comigo pessoalmente. Finalmente consegui automatizar o processo.”',
+        badge: 'Diagnóstico confirmado'
+      },
+      {
+        name: 'Pica-Pau',
+        location: 'Localização desconhecida',
+        quote:
+          '“Fui bloqueado uma vez. Mandei de novo. Fui bloqueado novamente. Mandei de outro número. HA-HA-HA-HA-HA.”',
+        badge: 'Persistência preocupante'
+      },
+      {
+        name: 'Lord Voldemort',
+        location: 'Hogwarts',
+        quote:
+          '“Durante anos fui aquele cujo nome não deve ser pronunciado. Depois deste treinamento virei aquele cujo número não deve ser atendido.”',
+        badge: 'Contato indesejado'
+      },
+      {
+        name: 'Vegeta',
+        location: 'Planeta Vegeta',
+        quote:
+          '“O medidor apontou mais de oito mil bloqueios. Finalmente encontrei um número digno do meu orgulho.”',
+        badge: 'Nível de rejeição elevado'
+      },
+      {
+        name: 'Wolverine',
+        location: 'Escola Xavier',
+        quote:
+          '“Meu fator de cura é impressionante. A reputação do número, aparentemente, não possui o mesmo recurso.”',
+        badge: 'Sem regeneração disponível'
+      }
+    ]
   },
 
   'o-numero-fantasma': {
@@ -359,7 +657,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Sessão invalidada silenciosamente durante a noite',
       red: 'Número desaparecido na segunda-feira às 08h00'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: 'Estava funcionando ontem. Hoje ninguém sabe onde está.',
+      ratingSummary: {
+        score: '4,8 / 5',
+        totalCount: '13.666 avaliações',
+        subtext: 'Última avaliação recebida: ontem.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Caso este número volte a funcionar, favor não perguntar como.'
+    },
+    testimonials: [
+      {
+        name: 'Ken',
+        location: 'Barbielândia',
+        quote:
+          '“Ontem estava tudo funcionando perfeitamente. Hoje ninguém consegue encontrar meu número. Comecei a desconfiar quando nem a Barbie conseguiu me localizar.”',
+        badge: 'Localização não encontrada'
+      },
+      {
+        name: 'Sherlock Holmes',
+        location: 'Baker Street',
+        quote:
+          '“Investiguei durante três dias. Sem mensagens. Sem chamadas. Sem atividade. A única evidência encontrada foi alguém dizendo: ‘mas ontem estava funcionando’.”',
+        badge: 'Caso inconclusivo'
+      },
+      {
+        name: 'Jack Reacher',
+        location: 'Localização desconhecida',
+        quote:
+          '“Procurei o número em todos os lugares. Quando finalmente encontrei, ele desapareceu novamente.”',
+        badge: 'Rastreamento impossível'
+      },
+      {
+        name: 'Elsa',
+        location: 'Arendelle',
+        quote:
+          '“Eu tentei ligar. Não funcionou. Mandei mensagem. Não respondeu. Então simplesmente deixei ir.”',
+        badge: 'Let it go'
+      },
+      {
+        name: 'Dr. Emmett Brown',
+        location: 'Hill Valley',
+        quote:
+          '“Voltei para ontem para verificar se o número estava funcionando. Estava. Voltei para hoje. Não está mais.”',
+        badge: 'Problema temporal'
+      },
+      {
+        name: 'Davy Jones',
+        location: 'O Holandês Voador',
+        quote:
+          '“Alguns números desaparecem do mar. Outros desaparecem do WhatsApp. Em ambos os casos, ninguém sabe onde foram parar.”',
+        badge: 'Perdido no oceano'
+      },
+      {
+        name: 'Merlin',
+        location: 'Camelot',
+        quote:
+          '“Utilizei todos os feitiços conhecidos para localizar o número. Nenhum funcionou. Talvez ele tenha simplesmente decidido partir para outra dimensão.”',
+        badge: 'Magia insuficiente'
+      },
+      {
+        name: 'Gandalf',
+        location: 'Terra-média',
+        quote:
+          '“O número estava funcionando. Então desapareceu. Disse que voltaria. Não voltou.”',
+        badge: 'Você não vai passar'
+      }
+    ]
   },
 
   'freddy-krueger': {
