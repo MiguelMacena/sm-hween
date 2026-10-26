@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MONSTER_PAGES, PageId } from '../data/darkDocsData';
 
 interface MonstersOverviewPageProps {
@@ -18,8 +18,10 @@ const ORDERED_MONSTER_IDS: PageId[] = [
 export const MonstersOverviewPage: React.FC<MonstersOverviewPageProps> = ({
   onNavigate
 }) => {
+  const [gifLoaded, setGifLoaded] = useState(false);
+
   return (
-    <article className="py-8 sm:py-16 space-y-10 max-w-2xl">
+    <article className="py-8 sm:py-16 space-y-10 w-full">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
         <span>INTRODUÇÃO</span>
@@ -27,14 +29,49 @@ export const MonstersOverviewPage: React.FC<MonstersOverviewPageProps> = ({
         <span className="text-zinc-300">OS MONSTROS</span>
       </div>
 
-      {/* Header */}
-      <header className="space-y-3 border-b border-zinc-800/80 pb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100 doc-title-glitch">
-          Os Monstros
-        </h1>
-        <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-          Cada seção desta documentação descreve um comportamento clássico capaz de comprometer a reputação de um número no WhatsApp, acompanhado do respectivo procedimento técnico e resultado esperado.
-        </p>
+      {/* Header: Title, Text & Monsters Gathering GIF */}
+      <header className="border-b border-zinc-800/80 pb-8 sm:pb-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 lg:gap-8">
+          {/* Left Column: Title & Text */}
+          <div className="space-y-3 md:flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100 doc-title-glitch">
+              Os Monstros
+            </h1>
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+              Cada seção desta documentação descreve um comportamento clássico capaz de comprometer a reputação de um número no WhatsApp, acompanhado do respectivo procedimento técnico e resultado esperado.
+            </p>
+          </div>
+
+          {/* Right Column (Desktop/Tablet) / Bottom Centered (Mobile): Monsters GIF */}
+          <div className="w-full max-w-[300px] sm:max-w-[340px] md:max-w-none md:w-[40%] lg:w-[44%] mx-auto md:mx-0 shrink-0">
+            <div className="relative">
+              {/* Subtle ambient glow matching the documentation identity */}
+              <div
+                className="
+                  absolute -inset-1.5 rounded-2xl
+                  bg-gradient-to-tr from-purple-900/20 via-purple-600/10 to-[#25D366]/10
+                  blur-xl opacity-75 pointer-events-none
+                "
+                aria-hidden="true"
+              />
+
+              <div className="relative rounded-xl overflow-hidden bg-[#150d24] border border-purple-500/20 shadow-[0_0_28px_-10px_rgba(147,51,234,0.28)] aspect-video">
+                <img
+                  src="/halloween/monstros.gif"
+                  alt="Os monstros do suporte reunidos na edição de Halloween da SM Click"
+                  width={640}
+                  height={360}
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => setGifLoaded(true)}
+                  className={`w-full h-auto block object-contain select-none transition-opacity duration-500 ${
+                    gifLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Clean Documentation Index List */}
