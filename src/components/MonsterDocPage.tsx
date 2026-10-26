@@ -217,19 +217,40 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
         </div>
       </section>
 
-      {/* Seção de Avaliações / Depoimentos (exclusiva da página "O Spam") */}
-      {data.id === 'o-spam' && data.testimonials && (
+      {/* Seção de Avaliações / Depoimentos */}
+      {data.testimonials && data.testimonialsMeta && (
         <section
           className="pt-10 mt-10 border-t border-zinc-800/80 space-y-8"
           aria-label="Avaliações dos alunos"
         >
-          <div className="space-y-2">
-            <h3 className="text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
-              ⭐ O que nossos alunos estão dizendo
-            </h3>
-            <p className="text-sm text-zinc-400">
-              Resultados reais de pessoas que aparentemente não aprenderam nada.
-            </p>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-lg sm:text-xl font-bold text-zinc-100 tracking-tight">
+                ⭐ O que nossos alunos estão dizendo
+              </h3>
+              <p className="text-sm text-zinc-400">
+                {data.testimonialsMeta.subtitle}
+              </p>
+            </div>
+
+            {data.testimonialsMeta.ratingSummary && (
+              <div className="p-4 rounded-lg bg-[#0f0f14] border border-zinc-800/80 inline-flex flex-col gap-1">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-lg font-bold text-zinc-100 font-mono">
+                    {data.testimonialsMeta.ratingSummary.score}
+                  </span>
+                  <span className="text-xs tracking-widest select-none" aria-label="5 de 5 estrelas">
+                    ⭐⭐⭐⭐⭐
+                  </span>
+                  <span className="text-xs font-medium text-zinc-300">
+                    {data.testimonialsMeta.ratingSummary.totalCount}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-500">
+                  {data.testimonialsMeta.ratingSummary.subtext}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -271,7 +292,7 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
           </div>
 
           <p className="text-xs text-zinc-500 leading-relaxed pt-2">
-            ⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realmente realizou o treinamento. Os números utilizados nos exemplos também não existem.
+            {data.testimonialsMeta.disclaimer}
           </p>
         </section>
       )}

@@ -24,6 +24,16 @@ export interface TestimonialItem {
   badge: string;
 }
 
+export interface TestimonialsMeta {
+  subtitle: string;
+  disclaimer: string;
+  ratingSummary?: {
+    score: string;
+    totalCount: string;
+    subtext: string;
+  };
+}
+
 export interface MonsterPageData {
   id: PageId;
   sectionLabel: string;
@@ -48,6 +58,7 @@ export interface MonsterPageData {
     red: string;
   };
   showDiscreteSpider?: boolean;
+  testimonialsMeta?: TestimonialsMeta;
   testimonials?: TestimonialItem[];
 }
 
@@ -123,6 +134,11 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Primeira mensagem entregue',
       yellow: 'Destinatário irritado na quinta repetição',
       red: 'Conta denunciada e restrita por spam'
+    },
+    testimonialsMeta: {
+      subtitle: 'Resultados reais de pessoas que aparentemente não aprenderam nada.',
+      disclaimer:
+        '⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realmente realizou o treinamento. Os números utilizados nos exemplos também não existem.'
     },
     testimonials: [
       {
@@ -216,7 +232,75 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       green: 'Campanha iniciada em velocidade máxima',
       yellow: 'Fila de envio congestionada e alerta de anomalia',
       red: 'Banimento imediato por automação abusiva'
-    }
+    },
+    testimonialsMeta: {
+      subtitle: 'Milhares de mensagens. Centenas de bloqueios. Um único sonho.',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '48.732 avaliações',
+        subtext: '48.731 foram enviadas ao mesmo tempo.'
+      },
+      disclaimer:
+        '⚠️ Depoimentos fictícios. Resultados podem variar dependendo da velocidade com que seu número for bloqueado.'
+    },
+    testimonials: [
+      {
+        name: 'Thanos',
+        location: 'Titã',
+        quote:
+          '“Antes eu precisava estalar os dedos. Agora consigo atingir metade da população com apenas um disparo.”',
+        badge: '50% de alcance'
+      },
+      {
+        name: 'Buzz Lightyear',
+        location: 'Comando Estelar',
+        quote:
+          '“Antes eu disparava para alguns contatos. Agora é ao infinito e além.”',
+        badge: 'Sem limite conhecido'
+      },
+      {
+        name: 'Dom Toretto',
+        location: 'Los Angeles',
+        quote:
+          '“Não importa se são 10 contatos ou 10 mil contatos. O importante é disparar em família.”',
+        badge: 'Disparo em família'
+      },
+      {
+        name: 'Ash Ketchum',
+        location: 'Pallet',
+        quote:
+          '“Meu objetivo sempre foi alcançar todos. Finalmente consegui. Infelizmente, todos me bloquearam.”',
+        badge: 'Temos que enviar'
+      },
+      {
+        name: 'Sonic',
+        location: 'Green Hill',
+        quote:
+          '“10.000 mensagens em poucos segundos. Achei rápido. O bloqueio foi mais rápido.”',
+        badge: 'Novo recorde'
+      },
+      {
+        name: 'Gru',
+        location: 'Laboratório Secreto',
+        quote:
+          '“Meus Minions selecionaram ‘Enviar para todos’. Pela primeira vez, eles executaram o plano perfeitamente.”',
+        badge: 'Plano executado'
+      },
+      {
+        name: 'Walter White',
+        location: 'Albuquerque',
+        quote:
+          '“Precisávamos aumentar a distribuição. A distribuição aumentou. As denúncias também.”',
+        badge: 'Especialista em distribuição'
+      },
+      {
+        name: 'Flash',
+        location: 'Central City',
+        quote:
+          '“Enviei 30 mil mensagens antes do sistema perceber. Por aproximadamente quatro segundos me senti imparável.”',
+        badge: 'Performance excepcional'
+      }
+    ]
   },
 
   'o-desconhecido': {
