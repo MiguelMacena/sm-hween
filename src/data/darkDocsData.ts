@@ -234,7 +234,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como enviar milhares de mensagens e fingir que foi uma coincidência',
     videoDuration: '02:15',
-    videoFilePlaceholder: '/videos/o-disparo-em-massa.mp4',
+    videoFilePlaceholder: '/halloween/video_page_disparo.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-02 // BULK_NO_OPTIN',
       metricLabel: 'Lote de envio simultâneo',
