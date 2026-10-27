@@ -335,6 +335,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Um chip recém-ativado e o desejo sincero de conversar com metade do país no primeiro dia.”',
     description:
       'O Desconhecido manifesta-se quando um número sem nenhum histórico de conversas, sem foto de perfil e recém-cadastrado decide iniciar centenas de atendimentos ativos com pessoas que nunca salvaram seu contato na agenda.',
+    hero: {
+      gifSrc: 'halloween/desconhecido_page.gif',
+      title: 'O DESCONHECIDO',
+      subtitle: 'Você sabe quem é. O WhatsApp, aparentemente, não.',
+      badge: 'Halloween Edition • Monstros / 03',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como usar um número novo e imediatamente falar com milhares de pessoas',
     videoDuration: '01:54',
     videoFilePlaceholder: '/videos/o-desconhecido.mp4',
