@@ -565,6 +565,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Colecionar bloqueios de clientes nunca foi tão rápido e eficiente.”',
     description:
       'O Bloqueio em Massa ocorre quando a abordagem enviada é tão invasiva ou fora de contexto que a reação imediata da maioria dos destinatários é bloquear o remetente nos primeiros segundos de leitura.',
+    hero: {
+      gifSrc: 'halloween/bloqueio_page.gif',
+      title: 'O BLOQUEIO EM MASSA',
+      subtitle: 'Bloqueia um. Bloqueia dez. Bloqueia todos.',
+      badge: 'Halloween Edition • Monstros / 05',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como conseguir o maior número possível de bloqueios',
     videoDuration: '01:59',
     videoFilePlaceholder: '/videos/o-bloqueio-em-massa.mp4',
@@ -668,6 +675,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Estava funcionando normalmente ontem à noite. Hoje ninguém sabe o que aconteceu.”',
     description:
       'O Número Fantasma é o fenômeno em que uma conexão desaparece sem deixar vestígios aparentes na memória da operação. Segundo os relatos, nenhuma campanha foi feita e nenhuma regra foi violada — o número simplesmente deixou de existir por conta própria.',
+    hero: {
+      gifSrc: 'halloween/fantasma_page.gif',
+      title: 'O NÚMERO FANTASMA',
+      subtitle: 'Você procura. Ele aparece. Você clica. Ele some.',
+      badge: 'Halloween Edition • Monstros / 06',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como fazer seu número desaparecer misteriosamente',
     videoDuration: '02:22',
     videoFilePlaceholder: '/videos/o-numero-fantasma.mp4',
