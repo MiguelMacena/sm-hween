@@ -786,6 +786,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Um, dois, o bloqueio vem atrás de você. Três, quatro, é melhor abrir um chamado.”',
     description:
       'A convergência de todas as práticas anteriores em um único fluxo operacional. Quando links suspeitos, disparos sem permissão, números recém-criados e mensagens repetidas se unem, o atendimento comum transforma-se no pesadelo definitivo da fila de suporte.',
+    hero: {
+      gifSrc: 'halloween/freddy_page.gif',
+      title: 'O PESADELO',
+      subtitle: 'Você achou que era só uma conversa. Era um pesadelo.',
+      badge: 'Halloween Edition • Final',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como transformar um atendimento comum em um verdadeiro pesadelo',
     videoDuration: '02:45',
     videoFilePlaceholder: '/videos/freddy-krueger.mp4',
