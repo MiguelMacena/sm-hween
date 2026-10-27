@@ -29,13 +29,11 @@ export const DocsSidebar: React.FC<DocsSidebarProps> = ({
           onClick={() => handleNavigate('inicio')}
           className="flex items-center gap-2.5 text-left focus:outline-none"
         >
-          <span className="w-2 h-2 rounded-full bg-[#25D366]" />
-          <span className="font-semibold text-sm tracking-tight text-zinc-100">
-            SM CLICK DOCS
-          </span>
-          <span className="text-[11px] font-mono text-zinc-500">
-            Halloween
-          </span>
+          <img
+            src="/halloween/logo_sm.jpg"
+            alt="SM Click Docs — Halloween Edition"
+            className="h-9 sm:h-10 max-h-10 w-auto max-w-[160px] sm:max-w-[180px] object-contain rounded select-none"
+          />
         </button>
 
         <button
@@ -70,15 +68,11 @@ export const DocsSidebar: React.FC<DocsSidebarProps> = ({
               onClick={() => handleNavigate('inicio')}
               className="group flex flex-col text-left focus:outline-none"
             >
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#25D366]" />
-                <span className="text-sm font-bold tracking-wider text-zinc-100 group-hover:text-white transition-colors">
-                  SM CLICK DOCS
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-zinc-500 pl-4 mt-0.5">
-                Halloween Edition
-              </span>
+              <img
+                src="/halloween/logo_sm.jpg"
+                alt="SM Click Docs — Halloween Edition"
+                className="h-10 sm:h-11 md:h-12 max-h-12 w-auto max-w-[170px] md:max-w-[200px] object-contain rounded select-none transition-opacity group-hover:opacity-90"
+              />
             </button>
 
             <button
