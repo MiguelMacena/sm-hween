@@ -453,6 +453,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Todo número tem um limite. Alguns links também.”',
     description:
       'Especialista em tecer URLs encurtadas, redirecionamentos em cascata e domínios recém-registrados dentro de mensagens comerciais. A Aranha dos Links transforma comunicações comuns em alertas críticos de segurança para os filtros de verificação.',
+    hero: {
+      gifSrc: 'halloween/aranha_page.gif',
+      title: 'A ARANHA DOS LINKS',
+      subtitle: 'Clique aqui. Vai dar tudo certo.',
+      badge: 'Halloween Edition • Monstros / 04',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como transformar qualquer mensagem em uma coleção de URLs',
     videoSubtitle: 'Como aumentar suas chances de banimento usando links',
     videoDuration: '02:04',
