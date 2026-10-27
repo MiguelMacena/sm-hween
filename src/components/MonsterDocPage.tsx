@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MonsterPageData, PageId, PAGE_ORDER, SIDEBAR_SECTIONS } from '../data/darkDocsData';
 import { Play, AlertCircle, RotateCcw } from 'lucide-react';
 import { DiscreteSpider } from './CobwebDecor';
+import { MonsterHero } from './MonsterHero';
 
 interface MonsterDocPageProps {
   data: MonsterPageData;
@@ -31,6 +32,9 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   const [supportDisappeared, setSupportDisappeared] = useState(false);
   const [pingStage, setPingStage] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
   const [lastSeenRevealed, setLastSeenRevealed] = useState(false);
+  const [nightmareStage, setNightmareStage] = useState<0 | 1 | 2>(0);
+  const [freddyHelpfulFeedback, setFreddyHelpfulFeedback] = useState<'sim' | 'nao' | null>(null);
+  const [lastAccessRevealed, setLastAccessRevealed] = useState(false);
 
   // Reset interactive states when switching monster pages
   useEffect(() => {
@@ -44,6 +48,9 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
     setSupportDisappeared(false);
     setPingStage(0);
     setLastSeenRevealed(false);
+    setNightmareStage(0);
+    setFreddyHelpfulFeedback(null);
+    setLastAccessRevealed(false);
 
     if (data.id === 'o-numero-fantasma') {
       const timer = setTimeout(() => {
@@ -52,6 +59,13 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
       return () => clearTimeout(timer);
     }
   }, [data.id]);
+
+  const handleInvestigateNightmare = () => {
+    setNightmareStage(1);
+    setTimeout(() => {
+      setNightmareStage(2);
+    }, 3000);
+  };
 
   const handleTriggerPing = () => {
     if (pingStage > 0 && pingStage < 5) return;
@@ -96,7 +110,11 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
   const currentOffset = EVADE_OFFSETS[evadeStep % EVADE_OFFSETS.length];
 
   return (
-    <article className="relative py-8 sm:py-16 space-y-10 max-w-2xl">
+    <article
+      className={`relative py-8 sm:py-16 space-y-10 ${
+        data.hero ? 'w-full' : 'max-w-2xl'
+      }`}
+    >
       {/* Optional discrete spider hanging in top right of specific monster pages */}
       {data.showDiscreteSpider && (
         <div className="absolute top-0 right-2 sm:right-6">
@@ -108,6 +126,17 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
       <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
         <span>{data.sectionLabel}</span>
       </div>
+
+      {/* Optional Hero Banner (Reusable across monster pages; currently active on Spam) */}
+      {data.hero && (
+        <MonsterHero
+          gifSrc={data.hero.gifSrc}
+          title={data.hero.title}
+          subtitle={data.hero.subtitle}
+          badge={data.hero.badge}
+          contentPosition={data.hero.contentPosition}
+        />
+      )}
 
       {/* Header: Title, Suspicious Quote, Short Description */}
       <header className="space-y-6">
@@ -614,6 +643,118 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
                   <span className="block text-zinc-500">Última vez visto:</span>
                   <span className="text-zinc-300 font-medium">
                     {lastSeenRevealed ? '“Sempre ontem.”' : '“Ontem.”'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Bloco Especial, Microinteração e Easter Egg exclusivos da página "Freddy Krueger" */}
+          {data.id === 'freddy-krueger' && (
+            <div className="pt-4 border-t border-zinc-800/80 space-y-6">
+              {/* 🌙 CENTRAL DE PESADELOS */}
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <h4 className="text-sm sm:text-base font-bold text-zinc-100">
+                    🌙 CENTRAL DE PESADELOS
+                  </h4>
+                  <p className="text-xs sm:text-sm text-zinc-400">
+                    “Seu atendimento apresentou sintomas de pesadelo?”
+                  </p>
+                </div>
+
+                <ul className="p-4 rounded-lg bg-[#0c0c10] border border-zinc-800/80 space-y-2 text-xs sm:text-sm text-zinc-300">
+                  <li>🌙 Cliente acordou assustado</li>
+                  <li>🔪 Mensagem enviada durante o sonho</li>
+                  <li>👁️ Número visualizado às 03:00</li>
+                  <li>💤 Cliente não lembra de ter iniciado a conversa</li>
+                  <li>☠️ Atendimento encerrado misteriosamente</li>
+                </ul>
+
+                <div className="space-y-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 block font-semibold">
+                    Diagnóstico:
+                  </span>
+                  <blockquote className="pl-3 border-l-2 border-red-500/60 text-xs sm:text-sm font-semibold text-zinc-200">
+                    Pesadelo operacional confirmado.
+                  </blockquote>
+                </div>
+
+                <div className="space-y-2.5 pt-1">
+                  <button
+                    type="button"
+                    onClick={handleInvestigateNightmare}
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded bg-zinc-900 hover:bg-zinc-800 border border-red-500/30 text-xs font-mono font-semibold text-zinc-200 transition-colors"
+                  >
+                    <span>🔴 INVESTIGAR O PESADELO</span>
+                  </button>
+
+                  {nightmareStage > 0 && (
+                    <blockquote className="pl-3 border-l-2 border-red-500/50 text-xs sm:text-sm font-mono text-red-400 transition-opacity duration-500">
+                      {nightmareStage === 1
+                        ? '“Você realmente acha que vai encontrar uma explicação?”'
+                        : '“Freddy está observando.”'}
+                    </blockquote>
+                  )}
+                </div>
+              </div>
+
+              {/* Microinteração & Easter Egg */}
+              <div className="pt-4 border-t border-zinc-800/60 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div className="text-xs text-zinc-400 space-y-2">
+                  <div className="flex items-center gap-2.5">
+                    <span>Esta página foi útil?</span>
+                    <div className="inline-flex items-center gap-2 font-mono">
+                      <button
+                        type="button"
+                        onClick={() => setFreddyHelpfulFeedback('sim')}
+                        className="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 transition-colors"
+                      >
+                        Sim
+                      </button>
+                      <span className="text-zinc-600">|</span>
+                      <button
+                        type="button"
+                        onClick={() => setFreddyHelpfulFeedback('nao')}
+                        className="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 transition-colors"
+                      >
+                        Não
+                      </button>
+                    </div>
+                  </div>
+
+                  {freddyHelpfulFeedback === 'sim' && (
+                    <blockquote className="pl-3 border-l-2 border-zinc-700 text-xs font-mono text-zinc-300">
+                      “Obrigado. Agora continue dormindo.”
+                    </blockquote>
+                  )}
+
+                  {freddyHelpfulFeedback === 'nao' && (
+                    <blockquote className="pl-3 border-l-2 border-red-500/50 text-xs font-mono text-red-400">
+                      “Tudo bem. A gente conversa quando você dormir.”
+                    </blockquote>
+                  )}
+                </div>
+
+                {/* Easter Egg no final da página */}
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onMouseEnter={() => setLastAccessRevealed(true)}
+                  onMouseLeave={() => setLastAccessRevealed(false)}
+                  onClick={() => setLastAccessRevealed((prev) => !prev)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setLastAccessRevealed((prev) => !prev);
+                    }
+                  }}
+                  className="text-xs font-mono text-zinc-500 cursor-pointer select-none focus:outline-none sm:text-right"
+                >
+                  <span className="text-zinc-400">
+                    {lastAccessRevealed
+                      ? '“Último acesso: você não vai lembrar.”'
+                      : '“Último acesso: 03:00 AM”'}
                   </span>
                 </div>
               </div>

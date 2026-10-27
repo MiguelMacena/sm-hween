@@ -36,12 +36,21 @@ export interface TestimonialsMeta {
   };
 }
 
+export interface MonsterHeroData {
+  gifSrc: string;
+  title: string;
+  subtitle: string;
+  badge?: string;
+  contentPosition?: 'bottom-left' | 'bottom-center' | 'bottom-right' | 'center-left' | 'center';
+}
+
 export interface MonsterPageData {
   id: PageId;
   sectionLabel: string;
   title: string;
   quote: string;
   description: string;
+  hero?: MonsterHeroData;
   videoTitle: string;
   videoSubtitle?: string;
   videoDuration: string;
@@ -111,6 +120,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Se o cliente não respondeu nas primeiras treze tentativas, claramente ele só não viu a décima quarta.”',
     description:
       'O Spam atua na repetição contínua de mensagens idênticas em curtos intervalos de tempo. Sua principal característica técnica é ignorar completamente a ausência de resposta do destinatário e continuar enviando lembretes urgentes até que o botão de denúncia seja acionado.',
+    hero: {
+      gifSrc: 'halloween/spam_page.gif',
+      title: 'O MONSTRO DO SPAM',
+      subtitle: 'Ele não manda mensagem. Ele manda TODAS.',
+      badge: 'Halloween Edition • Monstros / 01',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como mandar a mesma mensagem até alguém denunciar você',
     videoDuration: '01:48',
     videoFilePlaceholder: '/videos/o-spam.mp4',
@@ -209,6 +225,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Para que conversar com um cliente por vez se você pode importunar cinquenta mil no mesmo segundo?”',
     description:
       'Responsável por submeter listas gigantescas de contatos sem consentimento prévio a fluxos simultâneos de envio. O Disparo em Massa opera sob a premissa de que limites de frequência e boas práticas são apenas sugestões opcionais.',
+    hero: {
+      gifSrc: 'halloween/disparo_page.gif',
+      title: 'O MONSTRO DO DISPARO EM MASSA',
+      subtitle: 'Uma mensagem? Que tal 10.000?',
+      badge: 'Halloween Edition • Monstros / 02',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como enviar milhares de mensagens e fingir que foi uma coincidência',
     videoDuration: '02:15',
     videoFilePlaceholder: '/videos/o-disparo-em-massa.mp4',
@@ -312,6 +335,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Um chip recém-ativado e o desejo sincero de conversar com metade do país no primeiro dia.”',
     description:
       'O Desconhecido manifesta-se quando um número sem nenhum histórico de conversas, sem foto de perfil e recém-cadastrado decide iniciar centenas de atendimentos ativos com pessoas que nunca salvaram seu contato na agenda.',
+    hero: {
+      gifSrc: 'halloween/desconhecido_page.gif',
+      title: 'O DESCONHECIDO',
+      subtitle: 'Você sabe quem é. O WhatsApp, aparentemente, não.',
+      badge: 'Halloween Edition • Monstros / 03',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como usar um número novo e imediatamente falar com milhares de pessoas',
     videoDuration: '01:54',
     videoFilePlaceholder: '/videos/o-desconhecido.mp4',
@@ -423,6 +453,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Todo número tem um limite. Alguns links também.”',
     description:
       'Especialista em tecer URLs encurtadas, redirecionamentos em cascata e domínios recém-registrados dentro de mensagens comerciais. A Aranha dos Links transforma comunicações comuns em alertas críticos de segurança para os filtros de verificação.',
+    hero: {
+      gifSrc: 'halloween/aranha_page.gif',
+      title: 'A ARANHA DOS LINKS',
+      subtitle: 'Clique aqui. Vai dar tudo certo.',
+      badge: 'Halloween Edition • Monstros / 04',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como transformar qualquer mensagem em uma coleção de URLs',
     videoSubtitle: 'Como aumentar suas chances de banimento usando links',
     videoDuration: '02:04',
@@ -528,6 +565,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Colecionar bloqueios de clientes nunca foi tão rápido e eficiente.”',
     description:
       'O Bloqueio em Massa ocorre quando a abordagem enviada é tão invasiva ou fora de contexto que a reação imediata da maioria dos destinatários é bloquear o remetente nos primeiros segundos de leitura.',
+    hero: {
+      gifSrc: 'halloween/bloqueio_page.gif',
+      title: 'O BLOQUEIO EM MASSA',
+      subtitle: 'Bloqueia um. Bloqueia dez. Bloqueia todos.',
+      badge: 'Halloween Edition • Monstros / 05',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como conseguir o maior número possível de bloqueios',
     videoDuration: '01:59',
     videoFilePlaceholder: '/videos/o-bloqueio-em-massa.mp4',
@@ -631,6 +675,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Estava funcionando normalmente ontem à noite. Hoje ninguém sabe o que aconteceu.”',
     description:
       'O Número Fantasma é o fenômeno em que uma conexão desaparece sem deixar vestígios aparentes na memória da operação. Segundo os relatos, nenhuma campanha foi feita e nenhuma regra foi violada — o número simplesmente deixou de existir por conta própria.',
+    hero: {
+      gifSrc: 'halloween/fantasma_page.gif',
+      title: 'O NÚMERO FANTASMA',
+      subtitle: 'Você procura. Ele aparece. Você clica. Ele some.',
+      badge: 'Halloween Edition • Monstros / 06',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como fazer seu número desaparecer misteriosamente',
     videoDuration: '02:22',
     videoFilePlaceholder: '/videos/o-numero-fantasma.mp4',
@@ -735,6 +786,13 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     quote: '“Um, dois, o bloqueio vem atrás de você. Três, quatro, é melhor abrir um chamado.”',
     description:
       'A convergência de todas as práticas anteriores em um único fluxo operacional. Quando links suspeitos, disparos sem permissão, números recém-criados e mensagens repetidas se unem, o atendimento comum transforma-se no pesadelo definitivo da fila de suporte.',
+    hero: {
+      gifSrc: 'halloween/freddy_page.gif',
+      title: 'O PESADELO',
+      subtitle: 'Você achou que era só uma conversa. Era um pesadelo.',
+      badge: 'Halloween Edition • Final',
+      contentPosition: 'bottom-left'
+    },
     videoTitle: 'Como transformar um atendimento comum em um verdadeiro pesadelo',
     videoDuration: '02:45',
     videoFilePlaceholder: '/videos/freddy-krueger.mp4',
@@ -761,6 +819,74 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
       yellow: 'Todos os alertas de segurança acionados simultaneamente',
       red: 'Pesadelo completo para o número e para o suporte'
     },
-    showDiscreteSpider: true
+    showDiscreteSpider: true,
+    testimonialsMeta: {
+      subtitle: '“Porque alguns treinamentos você esquece. Este você leva para os sonhos.”',
+      ratingSummary: {
+        score: '4,9 / 5',
+        totalCount: '6.666 avaliações',
+        subtext: '“A maioria avaliou durante o sono.”'
+      },
+      disclaimer:
+        '⚠️ Depoimentos 100% fictícios. Nenhum dos personagens acima realizou o treinamento. Qualquer semelhança com atendimentos que acontecem às 03:00 da manhã é mera coincidência.'
+    },
+    testimonials: [
+      {
+        name: 'Freddy Krueger',
+        location: 'Elm Street',
+        quote:
+          '“Antes eu aparecia nos sonhos das pessoas. Depois deste treinamento, descobri que também posso aparecer nos atendimentos.”',
+        badge: 'Especialista em pesadelos'
+      },
+      {
+        name: 'Jason Voorhees',
+        location: 'Crystal Lake',
+        quote:
+          '“Não sou muito de falar. Normalmente só apareço, assusto alguém e vou embora. Esse curso me ensinou que posso fazer exatamente a mesma coisa em um atendimento.”',
+        badge: 'Aluno silencioso'
+      },
+      {
+        name: 'Pennywise',
+        location: 'Derry',
+        quote:
+          '“Eu costumava assustar crianças. Depois do treinamento, percebi que mandar uma mensagem às 03:00 da manhã para um número desconhecido é muito mais eficiente.”',
+        badge: 'Especialista em horários alternativos'
+      },
+      {
+        name: 'Coringa',
+        location: 'Gotham City',
+        quote:
+          '“A parte mais interessante foi descobrir que algumas pessoas conseguem transformar um simples atendimento em algo muito mais perturbador do que eu faria.”',
+        badge: 'Caos aplicado ao atendimento'
+      },
+      {
+        name: 'Michael Myers',
+        location: 'Haddonfield',
+        quote:
+          '“Não entendi muito bem o treinamento. Só fiquei parado olhando para a tela por 17 minutos. O usuário encerrou o atendimento sozinho.”',
+        badge: 'Metodologia contemplativa'
+      },
+      {
+        name: 'Chucky',
+        location: 'Hackensack',
+        quote:
+          '“Excelente treinamento. Pequeno, simples e extremamente inconveniente. Me identifiquei bastante.”',
+        badge: 'Especialista em perturbação'
+      },
+      {
+        name: 'Mortícia Addams',
+        location: 'Nevermore',
+        quote:
+          '“Finalmente encontrei um treinamento compatível com minha rotina. Sono, pesadelos, mensagens estranhas e pessoas acordando assustadas. Muito elegante.”',
+        badge: 'Aluna de excelência mórbida'
+      },
+      {
+        name: 'Scooby-Doo',
+        location: 'Máquina de Mistério',
+        quote:
+          '“Recebi uma mensagem durante um sonho. Acordei assustado. Voltei a dormir. A mensagem estava lá novamente. Definitivamente não era um fantasma.”',
+        badge: 'Investigação paranormal concluída'
+      }
+    ]
   }
 };
