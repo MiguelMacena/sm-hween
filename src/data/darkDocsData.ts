@@ -463,7 +463,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     videoTitle: 'Como transformar qualquer mensagem em uma coleção de URLs',
     videoSubtitle: 'Como aumentar suas chances de banimento usando links',
     videoDuration: '02:04',
-    videoFilePlaceholder: '/videos/a-aranha-dos-links.mp4',
+    videoFilePlaceholder: '/halloween/video_page_aranha.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-04 // SUSPICIOUS_URL_WEB',
       metricLabel: 'Redirecionamentos detectados',
