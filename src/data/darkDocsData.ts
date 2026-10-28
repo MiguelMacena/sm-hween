@@ -129,7 +129,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como mandar a mesma mensagem até alguém denunciar você',
     videoDuration: '01:48',
-    videoFilePlaceholder: '/videos/o-spam.mp4',
+    videoFilePlaceholder: '/halloween/video_page_robo.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-01 // RETRY_LOOP_INFINITO',
       metricLabel: 'Mensagens repetidas / min',
@@ -795,7 +795,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como transformar um atendimento comum em um verdadeiro pesadelo',
     videoDuration: '02:45',
-    videoFilePlaceholder: '/videos/freddy-krueger.mp4',
+    videoFilePlaceholder: '/halloween/video_page_freddy.mp4',
     thumbnailTheme: {
       codeLabel: 'FINAL // NIGHTMARE_PROTOCOL',
       metricLabel: 'Nível de incidência no suporte',
