@@ -574,7 +574,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como conseguir o maior número possível de bloqueios',
     videoDuration: '01:59',
-    videoFilePlaceholder: '/videos/o-bloqueio-em-massa.mp4',
+    videoFilePlaceholder: '/halloween/video_page_ghost.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-05 // MASS_BLOCK_COLLECTOR',
       metricLabel: 'Taxa de bloqueio por envio',
@@ -684,7 +684,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como fazer seu número desaparecer misteriosamente',
     videoDuration: '02:22',
-    videoFilePlaceholder: '/videos/o-numero-fantasma.mp4',
+    videoFilePlaceholder: '/halloween/video_page_cel.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-06 // GHOST_SESSION_404',
       metricLabel: 'Estado atual da sessão',
