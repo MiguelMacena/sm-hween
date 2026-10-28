@@ -129,7 +129,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como mandar a mesma mensagem até alguém denunciar você',
     videoDuration: '01:48',
-    videoFilePlaceholder: '/videos/o-spam.mp4',
+    videoFilePlaceholder: '/halloween/video_page_robo.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-01 // RETRY_LOOP_INFINITO',
       metricLabel: 'Mensagens repetidas / min',
@@ -234,7 +234,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como enviar milhares de mensagens e fingir que foi uma coincidência',
     videoDuration: '02:15',
-    videoFilePlaceholder: '/videos/o-disparo-em-massa.mp4',
+    videoFilePlaceholder: '/halloween/video_page_disparo.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-02 // BULK_NO_OPTIN',
       metricLabel: 'Lote de envio simultâneo',
@@ -344,7 +344,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como usar um número novo e imediatamente falar com milhares de pessoas',
     videoDuration: '01:54',
-    videoFilePlaceholder: '/videos/o-desconhecido.mp4',
+    videoFilePlaceholder: '/halloween/video_page_desc.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-03 // COLD_CHIP_SPEEDRUN',
       metricLabel: 'Idade do número conectado',
@@ -463,7 +463,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     videoTitle: 'Como transformar qualquer mensagem em uma coleção de URLs',
     videoSubtitle: 'Como aumentar suas chances de banimento usando links',
     videoDuration: '02:04',
-    videoFilePlaceholder: '/videos/a-aranha-dos-links.mp4',
+    videoFilePlaceholder: '/halloween/video_page_aranha.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-04 // SUSPICIOUS_URL_WEB',
       metricLabel: 'Redirecionamentos detectados',
@@ -574,7 +574,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como conseguir o maior número possível de bloqueios',
     videoDuration: '01:59',
-    videoFilePlaceholder: '/videos/o-bloqueio-em-massa.mp4',
+    videoFilePlaceholder: '/halloween/video_page_ghost.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-05 // MASS_BLOCK_COLLECTOR',
       metricLabel: 'Taxa de bloqueio por envio',
@@ -684,7 +684,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como fazer seu número desaparecer misteriosamente',
     videoDuration: '02:22',
-    videoFilePlaceholder: '/videos/o-numero-fantasma.mp4',
+    videoFilePlaceholder: '/halloween/video_page_cel.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-06 // GHOST_SESSION_404',
       metricLabel: 'Estado atual da sessão',
@@ -795,7 +795,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como transformar um atendimento comum em um verdadeiro pesadelo',
     videoDuration: '02:45',
-    videoFilePlaceholder: '/videos/freddy-krueger.mp4',
+    videoFilePlaceholder: '/halloween/video_page_freddy.mp4',
     thumbnailTheme: {
       codeLabel: 'FINAL // NIGHTMARE_PROTOCOL',
       metricLabel: 'Nível de incidência no suporte',

@@ -227,12 +227,18 @@ export const MonsterDocPage: React.FC<MonsterDocPageProps> = ({
             </button>
           ) : (
             /* Active Video Player Area (supports real local file or clean placeholder) */
-            <div className="w-full h-full flex flex-col items-center justify-center bg-[#08080b] p-6 text-center relative">
+            <div
+              className={`w-full h-full flex flex-col items-center justify-center bg-[#08080b] text-center relative ${
+                videoLoadError ? 'p-6' : ''
+              }`}
+            >
               {!videoLoadError ? (
                 <video
                   src={data.videoFilePlaceholder}
                   controls
                   autoPlay
+                  playsInline
+                  preload="metadata"
                   className="w-full h-full object-contain"
                   onError={() => setVideoLoadError(true)}
                 />
