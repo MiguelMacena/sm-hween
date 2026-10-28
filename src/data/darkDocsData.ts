@@ -344,7 +344,7 @@ export const MONSTER_PAGES: Record<string, MonsterPageData> = {
     },
     videoTitle: 'Como usar um número novo e imediatamente falar com milhares de pessoas',
     videoDuration: '01:54',
-    videoFilePlaceholder: '/videos/o-desconhecido.mp4',
+    videoFilePlaceholder: '/halloween/video_page_desc.mp4',
     thumbnailTheme: {
       codeLabel: 'MOD-03 // COLD_CHIP_SPEEDRUN',
       metricLabel: 'Idade do número conectado',
